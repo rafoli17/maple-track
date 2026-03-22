@@ -194,7 +194,8 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               <option value="TWO_YEAR_DIPLOMA">Diploma 2 anos</option>
               <option value="BACHELORS">Bacharelado</option>
               <option value="TWO_OR_MORE_CERTIFICATES">2+ Certificados</option>
-              <option value="MASTERS">Mestrado</option>
+              <option value="POST_GRADUATION">Pós-Graduação</option>
+                    <option value="MASTERS">Mestrado</option>
               <option value="PHD">Doutorado</option>
               <option value="TECHNICAL">Tecnico</option>
             </select>

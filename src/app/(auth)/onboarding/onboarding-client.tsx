@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import {
   User,
   GraduationCap,
@@ -36,6 +37,7 @@ interface OnboardingClientProps {
 
 export function OnboardingClient({ userName }: OnboardingClientProps) {
   const router = useRouter();
+  const { update: updateSession } = useSession();
   const [currentStep, setCurrentStep] = React.useState(0);
   const [formData, setFormData] = React.useState<Record<string, any>>({});
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -142,6 +144,8 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
       if (!res.ok) {
         throw new Error("Failed to complete onboarding");
       }
+      // Force JWT refresh so session.user.onboardingCompleted = true
+      await updateSession();
       router.push("/dashboard");
       router.refresh();
     } catch {
@@ -305,7 +309,8 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   <option value="TWO_YEAR_DIPLOMA">Diploma 2 anos</option>
                   <option value="BACHELORS">Bacharelado</option>
                   <option value="TWO_OR_MORE_CERTIFICATES">2+ Certificados</option>
-                  <option value="MASTERS">Mestrado</option>
+                  <option value="POST_GRADUATION">Pós-Graduação</option>
+                    <option value="MASTERS">Mestrado</option>
                   <option value="PHD">Doutorado</option>
                   <option value="TECHNICAL">Tecnico</option>
                 </select>

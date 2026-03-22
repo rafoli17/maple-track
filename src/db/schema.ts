@@ -23,6 +23,7 @@ export const educationLevelEnum = pgEnum("education_level", [
   "ONE_YEAR_DIPLOMA",
   "TWO_YEAR_DIPLOMA",
   "BACHELORS",
+  "POST_GRADUATION",
   "TWO_OR_MORE_CERTIFICATES",
   "MASTERS",
   "PHD",
