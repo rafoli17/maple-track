@@ -11,8 +11,8 @@ import {
   DollarSign,
   BookOpen,
   CheckCircle2,
-  Plus,
 } from "lucide-react";
+import { AddToPlanButton } from "./add-to-plan-button";
 
 interface ProgramDetailPageProps {
   params: Promise<{ id: string }>;
@@ -141,10 +141,7 @@ export default async function ProgramDetailPage({ params }: ProgramDetailPagePro
 
       {/* Action */}
       <div className="flex flex-col gap-3 sm:flex-row">
-        <button className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-light">
-          <Plus className="h-4 w-4" />
-          Adicionar ao Plano
-        </button>
+        <AddToPlanButton programId={program.id} />
         <Link
           href="/simulator"
           className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-card"
