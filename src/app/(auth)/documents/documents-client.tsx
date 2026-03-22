@@ -12,6 +12,7 @@ import {
   Plus,
   X,
 } from "lucide-react";
+import { EmptyStateIllustration } from "@/components/illustrations";
 
 interface DocumentsClientProps {
   groupedDocs: Record<string, any[]>;
@@ -278,7 +279,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
         })
       ) : (
         <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
-          <FileText className="mb-3 h-10 w-10 text-foreground-dim" />
+          <EmptyStateIllustration width={130} className="mb-4" />
           <p className="mb-1 text-base font-medium text-foreground">
             Nenhum documento cadastrado
           </p>

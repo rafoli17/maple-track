@@ -17,6 +17,7 @@ import {
   ArrowRight,
   Check,
 } from "lucide-react";
+import { OnboardingWelcomeIllustration } from "@/components/illustrations";
 
 const steps = [
   { id: "welcome", title: "Boas-vindas", icon: Sparkles },
@@ -204,8 +205,8 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
       <div className="rounded-xl border border-border bg-card p-6 md:p-8">
         {currentStep === 0 && (
           <div className="text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-              <Sparkles className="h-8 w-8 text-primary" />
+            <div className="mx-auto mb-6">
+              <OnboardingWelcomeIllustration width={180} className="mx-auto" />
             </div>
             <h2 className="mb-3 text-2xl font-bold text-foreground">
               Bem-vindo, {userName.split(" ")[0]}!

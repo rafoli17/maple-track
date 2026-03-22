@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
+import { EmptyStateIllustration } from "@/components/illustrations";
 
 interface PlansClientProps {
   plans: any[];
@@ -122,9 +123,7 @@ export function PlansClient({ plans }: PlansClientProps) {
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-8">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface">
-                    <Plus className="h-6 w-6 text-foreground-dim" />
-                  </div>
+                  <EmptyStateIllustration width={100} className="mb-2" />
                   <p className="mb-3 text-sm text-foreground-dim">
                     Slot vazio
                   </p>

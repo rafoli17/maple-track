@@ -10,6 +10,7 @@ import {
   MapPin,
   ArrowRight,
 } from "lucide-react";
+import { EmptyStateIllustration } from "@/components/illustrations";
 
 interface JourneyClientProps {
   activePlan: any;
@@ -52,7 +53,7 @@ export function JourneyClient({ activePlan, phases }: JourneyClientProps) {
       <div className="space-y-6">
         <h1 className="text-2xl font-bold text-foreground">Jornada</h1>
         <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
-          <MapPin className="mb-3 h-10 w-10 text-foreground-dim" />
+          <EmptyStateIllustration width={130} className="mb-4" />
           <p className="mb-2 text-base font-medium text-foreground">
             Nenhum plano ativo
           </p>

@@ -13,6 +13,7 @@ import {
   Target,
   BookOpen,
 } from "lucide-react";
+import { FamilyIllustration, AirplaneIllustration } from "@/components/illustrations";
 
 interface DashboardClientProps {
   userName: string;
@@ -79,14 +80,20 @@ export function DashboardClient({
 
   return (
     <div className="space-y-8">
-      {/* Page header */}
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground">
-          Ola, {firstName}!
-        </h1>
-        <p className="mt-1 text-sm text-foreground-muted">
-          Acompanhe o progresso da sua jornada para o Canada.
-        </p>
+      {/* Welcome banner */}
+      <div className="flex flex-col items-center gap-4 rounded-2xl border border-border/60 bg-gradient-to-r from-white to-primary/[0.03] p-6 shadow-sm sm:flex-row sm:gap-6">
+        <FamilyIllustration width={140} className="shrink-0" />
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">
+            Ola, {firstName}!
+          </h1>
+          <p className="mt-1 text-sm text-foreground-muted">
+            Acompanhe o progresso da sua jornada para o Canada.
+          </p>
+        </div>
+        <div className="hidden lg:block lg:ml-auto">
+          <AirplaneIllustration width={160} className="opacity-60" />
+        </div>
       </div>
 
       {/* Top row — Progress + Next Actions + CRS */}

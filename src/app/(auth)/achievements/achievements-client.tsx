@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   Lock,
 } from "lucide-react";
+import { CelebrationIllustration } from "@/components/illustrations";
 
 interface AchievementsClientProps {
   achievements: any[];
@@ -55,11 +56,14 @@ export function AchievementsClient({ achievements }: AchievementsClientProps) {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Conquistas</h1>
-        <p className="text-sm text-foreground-muted">
-          Acompanhe suas conquistas e progresso na jornada.
-        </p>
+      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Conquistas</h1>
+          <p className="text-sm text-foreground-muted">
+            Acompanhe suas conquistas e progresso na jornada.
+          </p>
+        </div>
+        <CelebrationIllustration width={120} className="hidden sm:block sm:ml-auto shrink-0 opacity-80" />
       </div>
 
       {/* XP Bar + Stats */}
