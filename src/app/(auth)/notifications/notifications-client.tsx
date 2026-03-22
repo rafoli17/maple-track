@@ -37,8 +37,10 @@ export function NotificationsClient({ notifications }: NotificationsClientProps)
   const markAsRead = async (id: string) => {
     setMarking(id);
     try {
-      await fetch(`/api/notifications/${id}/read`, {
-        method: "PATCH",
+      await fetch("/api/notifications", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notificationIds: [id] }),
       });
       router.refresh();
     } catch {
@@ -49,9 +51,15 @@ export function NotificationsClient({ notifications }: NotificationsClientProps)
   };
 
   const markAllAsRead = async () => {
+    const unreadIds = notifications
+      .filter((n: any) => !n.isRead)
+      .map((n: any) => n.id);
+    if (unreadIds.length === 0) return;
     try {
-      await fetch("/api/notifications/read-all", {
-        method: "PATCH",
+      await fetch("/api/notifications", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ notificationIds: unreadIds }),
       });
       router.refresh();
     } catch {

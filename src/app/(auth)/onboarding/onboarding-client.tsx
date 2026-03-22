@@ -45,10 +45,86 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
   const isLast = currentStep === steps.length - 1;
   const progress = ((currentStep + 1) / steps.length) * 100;
 
-  const goNext = () => {
+  const buildStepData = (stepIndex: number) => {
+    switch (stepIndex) {
+      case 1:
+        return {
+          firstName: formData.firstName || "",
+          lastName: formData.lastName || "",
+          dateOfBirth: formData.dateOfBirth || "",
+          nationality: formData.nationality || "",
+          currentCountry: formData.currentCountry || "",
+        };
+      case 2:
+        return {
+          educationLevel: formData.educationLevel || "HIGH_SCHOOL",
+          fieldOfStudy: formData.fieldOfStudy,
+        };
+      case 3:
+        return {
+          currentOccupation: formData.currentOccupation || "",
+          nocCode: formData.nocCode,
+          yearsOfExperience: Number(formData.yearsOfExperience) || 0,
+          canadianExperienceYears: Number(formData.canadianExperienceYears) || 0,
+        };
+      case 4:
+        return {
+          hasTest: !!formData.languageTestType,
+          testType: formData.languageTestType || undefined,
+          speaking: formData.language_speaking ? Number(formData.language_speaking) : undefined,
+          listening: formData.language_listening ? Number(formData.language_listening) : undefined,
+          reading: formData.language_reading ? Number(formData.language_reading) : undefined,
+          writing: formData.language_writing ? Number(formData.language_writing) : undefined,
+        };
+      case 5:
+        return {
+          inviteSpouse: !!(formData.maritalStatus === "MARRIED" || formData.maritalStatus === "COMMON_LAW") && !!formData.spouseEmail,
+          spouseEmail: formData.spouseEmail || undefined,
+        };
+      case 6:
+        return {
+          fundsAvailable: Number(formData.fundsAvailable) || 0,
+        };
+      case 7:
+        return {
+          hasChildren: formData.hasChildren || false,
+          numberOfChildren: Number(formData.numberOfChildren) || 0,
+        };
+      case 8:
+        return {
+          preferredProvinces: formData.provinces || [],
+          acceptsRural: formData.acceptsRural || false,
+          speaksFrench: formData.speaksFrench || false,
+        };
+      default:
+        return {};
+    }
+  };
+
+  const saveStep = async (stepIndex: number) => {
+    if (stepIndex === 0 || stepIndex === 9) return; // Welcome and Result steps don't save
+    try {
+      const res = await fetch("/api/onboarding", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ step: stepIndex, data: buildStepData(stepIndex) }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        console.error("Failed to save step:", err);
+      }
+    } catch (err) {
+      console.error("Error saving step:", err);
+    }
+  };
+
+  const goNext = async () => {
     if (isLast) {
       handleComplete();
     } else {
+      setIsSubmitting(true);
+      await saveStep(currentStep);
+      setIsSubmitting(false);
       setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
     }
   };
@@ -60,11 +136,12 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
   const handleComplete = async () => {
     setIsSubmitting(true);
     try {
-      await fetch("/api/onboarding/complete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      const res = await fetch("/api/onboarding", {
+        method: "PUT",
       });
+      if (!res.ok) {
+        throw new Error("Failed to complete onboarding");
+      }
       router.push("/dashboard");
       router.refresh();
     } catch {
@@ -188,6 +265,18 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   onChange={(e) => updateField("nationality", e.target.value)}
                   className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="Ex: Brasileira"
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="mb-1 block text-sm text-foreground-muted">
+                  Pais de Residencia Atual
+                </label>
+                <input
+                  type="text"
+                  value={formData.currentCountry || ""}
+                  onChange={(e) => updateField("currentCountry", e.target.value)}
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder="Ex: Brasil"
                 />
               </div>
             </div>

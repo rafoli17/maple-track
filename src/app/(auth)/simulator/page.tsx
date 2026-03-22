@@ -82,6 +82,27 @@ export default function SimulatorPage() {
     };
   }, [age, education, clb, experience, canadianExperience, hasSpouse, spouseEducation, spouseClb, spouseExperience]);
 
+  const [isSaving, setIsSaving] = React.useState(false);
+  const [saveSuccess, setSaveSuccess] = React.useState(false);
+
+  const handleSaveScore = async () => {
+    setIsSaving(true);
+    setSaveSuccess(false);
+    try {
+      const res = await fetch("/api/crs", {
+        method: "POST",
+      });
+      if (res.ok) {
+        setSaveSuccess(true);
+        setTimeout(() => setSaveSuccess(false), 3000);
+      }
+    } catch {
+      // Error
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const reset = () => {
     setAge("30");
     setEducation("BACHELORS");
@@ -92,6 +113,7 @@ export default function SimulatorPage() {
     setSpouseEducation("BACHELORS");
     setSpouseClb("7");
     setSpouseExperience("0");
+    setSaveSuccess(false);
   };
 
   return (
@@ -250,9 +272,13 @@ export default function SimulatorPage() {
               <RotateCcw className="h-4 w-4" />
               Resetar
             </button>
-            <button className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light">
+            <button
+              onClick={handleSaveScore}
+              disabled={isSaving}
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50"
+            >
               <Save className="h-4 w-4" />
-              Salvar Score
+              {isSaving ? "Salvando..." : saveSuccess ? "Salvo!" : "Salvar Score"}
             </button>
           </div>
         </div>

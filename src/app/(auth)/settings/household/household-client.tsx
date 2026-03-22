@@ -42,7 +42,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
     setIsSaving(true);
     try {
       await fetch("/api/household", {
-        method: "PATCH",
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: householdName }),
       });
@@ -64,21 +64,21 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
       </div>
 
       {/* Navigation tabs */}
-      <div className="flex gap-2 border-b border-border pb-2">
+      <div className="flex gap-2 border-b border-border pb-3">
         <Link
           href="/settings"
-          className="rounded-lg px-3 py-1.5 text-sm font-medium text-foreground-muted transition-colors hover:bg-card"
+          className="rounded-full px-4 py-2 text-sm font-medium text-foreground-muted transition-colors hover:bg-surface"
         >
           Perfil
         </Link>
-        <span className="rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary">
+        <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
           Household
         </span>
       </div>
 
       {/* Household name */}
       {household && (
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-2xl bg-white p-6 shadow-sm">
           <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
             <Users className="h-5 w-5 text-foreground-muted" />
             Dados do Household
@@ -88,13 +88,13 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
               type="text"
               value={householdName}
               onChange={(e) => setHouseholdName(e.target.value)}
-              className="h-10 flex-1 rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               placeholder="Nome do household"
             />
             <button
               onClick={handleSaveName}
               disabled={isSaving}
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-light disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50"
             >
               <Save className="h-4 w-4" />
               {isSaving ? "Salvando..." : "Salvar"}
@@ -104,7 +104,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
       )}
 
       {/* Members list */}
-      <div className="rounded-xl border border-border bg-card p-6">
+      <div className="rounded-2xl bg-white p-6 shadow-sm">
         <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
           <Users className="h-5 w-5 text-foreground-muted" />
           Membros ({members.length})
@@ -114,7 +114,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
             {members.map((member: any) => (
               <li
                 key={member.id}
-                className="flex items-center gap-3 rounded-lg bg-surface p-3"
+                className="flex items-center gap-3 rounded-2xl bg-surface p-4"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
                   <User className="h-5 w-5 text-primary" />
@@ -145,7 +145,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
       </div>
 
       {/* Invite spouse */}
-      <div className="rounded-xl border border-border bg-card p-6">
+      <div className="rounded-2xl bg-white p-6 shadow-sm">
         <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
           <UserPlus className="h-5 w-5 text-foreground-muted" />
           Convidar Conjuge
@@ -155,7 +155,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
           Ambos poderao visualizar e gerenciar os planos de imigracao juntos.
         </p>
         {inviteSent ? (
-          <div className="flex items-center gap-2 rounded-lg bg-success/10 p-3">
+          <div className="flex items-center gap-2 rounded-xl bg-success/10 p-4">
             <Mail className="h-4 w-4 text-success" />
             <p className="text-sm text-success">
               Convite enviado com sucesso! Verifique o email.
@@ -168,12 +168,12 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
               value={inviteEmail}
               onChange={(e) => setInviteEmail(e.target.value)}
               placeholder="email@conjuge.com"
-              className="h-10 flex-1 rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
             />
             <button
               onClick={handleInvite}
               disabled={isSending || !inviteEmail}
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-light disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50"
             >
               <Mail className="h-4 w-4" />
               {isSending ? "Enviando..." : "Enviar Convite"}

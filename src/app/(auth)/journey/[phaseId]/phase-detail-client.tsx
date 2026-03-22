@@ -49,7 +49,7 @@ export function PhaseDetailClient({ phase, steps }: PhaseDetailClientProps) {
     try {
       const newStatus = currentStatus === "DONE" ? "TODO" : "DONE";
       await fetch(`/api/journey/steps/${stepId}`, {
-        method: "PATCH",
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
       });

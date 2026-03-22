@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { Bell, Search } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { Avatar } from "@/components/ui/avatar";
 
 interface HeaderProps {
@@ -93,14 +94,12 @@ export function Header({ user }: HeaderProps) {
                   Household
                 </Link>
                 <hr className="my-1.5 border-border/60" />
-                <form action="/api/auth/signout" method="POST">
-                  <button
-                    type="submit"
-                    className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-error transition-colors hover:bg-[#F7F7F7]"
-                  >
-                    Sair
-                  </button>
-                </form>
+                <button
+                  onClick={() => signOut({ callbackUrl: "/login" })}
+                  className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-error transition-colors hover:bg-[#F7F7F7]"
+                >
+                  Sair
+                </button>
               </div>
             </>
           )}

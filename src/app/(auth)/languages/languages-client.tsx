@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+import { useRouter } from "next/navigation";
 import {
   Languages,
   User,
@@ -8,6 +10,8 @@ import {
   CheckCircle2,
   Clock,
   Target,
+  Plus,
+  X,
 } from "lucide-react";
 
 interface LanguagesClientProps {
@@ -25,14 +29,150 @@ const testStatusConfig: Record<string, { color: string; label: string }> = {
 const skills = ["speaking", "listening", "reading", "writing"] as const;
 
 export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
+  const router = useRouter();
+  const [showAddForm, setShowAddForm] = React.useState(false);
+  const [isCreating, setIsCreating] = React.useState(false);
+  const [newTest, setNewTest] = React.useState({
+    testType: "IELTS_GENERAL",
+    status: "PLANNED" as string,
+    speaking: "",
+    listening: "",
+    reading: "",
+    writing: "",
+    testDate: "",
+  });
+
+  const handleCreateTest = async () => {
+    setIsCreating(true);
+    try {
+      const payload: Record<string, unknown> = {
+        testType: newTest.testType,
+        status: newTest.status,
+      };
+      if (newTest.speaking) payload.speaking = Number(newTest.speaking);
+      if (newTest.listening) payload.listening = Number(newTest.listening);
+      if (newTest.reading) payload.reading = Number(newTest.reading);
+      if (newTest.writing) payload.writing = Number(newTest.writing);
+      if (newTest.testDate) payload.testDate = newTest.testDate;
+
+      const res = await fetch("/api/languages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        setShowAddForm(false);
+        setNewTest({ testType: "IELTS_GENERAL", status: "PLANNED", speaking: "", listening: "", reading: "", writing: "", testDate: "" });
+        router.refresh();
+      }
+    } catch {
+      // Error
+    } finally {
+      setIsCreating(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Idiomas</h1>
-        <p className="text-sm text-foreground-muted">
-          Acompanhe testes de idioma e scores de cada membro do household.
-        </p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Idiomas</h1>
+          <p className="text-sm text-foreground-muted">
+            Acompanhe testes de idioma e scores de cada membro do household.
+          </p>
+        </div>
+        <button
+          onClick={() => setShowAddForm(!showAddForm)}
+          className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light"
+        >
+          <Plus className="h-4 w-4" />
+          Adicionar Teste
+        </button>
       </div>
+
+      {/* Add test form */}
+      {showAddForm && (
+        <div className="rounded-2xl bg-white p-6 shadow-sm">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-base font-semibold text-foreground">Novo Teste de Idioma</h2>
+            <button onClick={() => setShowAddForm(false)} className="text-foreground-dim hover:text-foreground">
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-sm text-foreground-muted">Tipo de Teste</label>
+              <select
+                value={newTest.testType}
+                onChange={(e) => setNewTest({ ...newTest, testType: e.target.value })}
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              >
+                <option value="IELTS_GENERAL">IELTS General</option>
+                <option value="IELTS_ACADEMIC">IELTS Academic</option>
+                <option value="CELPIP">CELPIP</option>
+                <option value="TEF">TEF (Frances)</option>
+                <option value="TCF">TCF (Frances)</option>
+              </select>
+            </div>
+            <div>
+              <label className="mb-1 block text-sm text-foreground-muted">Status</label>
+              <select
+                value={newTest.status}
+                onChange={(e) => setNewTest({ ...newTest, status: e.target.value })}
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              >
+                <option value="PLANNED">Planejado</option>
+                <option value="SCHEDULED">Agendado</option>
+                <option value="COMPLETED">Concluido</option>
+              </select>
+            </div>
+            <div>
+              <label className="mb-1 block text-sm text-foreground-muted">Speaking</label>
+              <input type="number" step="0.5" min="0" max="12" value={newTest.speaking}
+                onChange={(e) => setNewTest({ ...newTest, speaking: e.target.value })}
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm text-foreground-muted">Listening</label>
+              <input type="number" step="0.5" min="0" max="12" value={newTest.listening}
+                onChange={(e) => setNewTest({ ...newTest, listening: e.target.value })}
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm text-foreground-muted">Reading</label>
+              <input type="number" step="0.5" min="0" max="12" value={newTest.reading}
+                onChange={(e) => setNewTest({ ...newTest, reading: e.target.value })}
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm text-foreground-muted">Writing</label>
+              <input type="number" step="0.5" min="0" max="12" value={newTest.writing}
+                onChange={(e) => setNewTest({ ...newTest, writing: e.target.value })}
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label className="mb-1 block text-sm text-foreground-muted">Data do Teste</label>
+              <input type="date" value={newTest.testDate}
+                onChange={(e) => setNewTest({ ...newTest, testDate: e.target.value })}
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+          </div>
+          <div className="mt-4 flex justify-end">
+            <button
+              onClick={handleCreateTest}
+              disabled={isCreating}
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50"
+            >
+              {isCreating ? "Salvando..." : "Salvar Teste"}
+            </button>
+          </div>
+        </div>
+      )}
 
       {profiles.length > 0 ? (
         profiles.map((profile: any) => {
