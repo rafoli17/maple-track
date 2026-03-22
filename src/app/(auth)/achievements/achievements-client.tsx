@@ -64,7 +64,7 @@ export function AchievementsClient({ achievements }: AchievementsClientProps) {
 
       {/* XP Bar + Stats */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-border bg-card p-6 sm:col-span-2">
+        <div className="rounded-2xl bg-white p-6 shadow-sm sm:col-span-2">
           <div className="mb-2 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Award className="h-5 w-5 text-primary" />
@@ -86,7 +86,7 @@ export function AchievementsClient({ achievements }: AchievementsClientProps) {
             {xpForNextLevel - xpInLevel} XP para o proximo nivel
           </p>
         </div>
-        <div className="rounded-xl border border-border bg-card p-6 text-center">
+        <div className="rounded-2xl bg-white p-6 text-center shadow-sm">
           <Trophy className="mx-auto mb-2 h-6 w-6 text-warning" />
           <p className="text-2xl font-bold text-foreground">
             {achievements.length}
@@ -110,15 +110,15 @@ export function AchievementsClient({ achievements }: AchievementsClientProps) {
           return (
             <div
               key={ach.name}
-              className={`rounded-xl border p-4 transition-colors ${
+              className={`rounded-2xl p-5 transition-all ${
                 unlocked
-                  ? "border-primary/30 bg-card"
-                  : "border-border bg-card opacity-60"
+                  ? "bg-white shadow-sm hover:shadow-md"
+                  : "bg-surface opacity-60"
               }`}
             >
               <div className="flex items-start gap-3">
                 <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
                     unlocked ? colorClass : "bg-surface text-foreground-dim"
                   }`}
                 >

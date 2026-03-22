@@ -17,12 +17,12 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
 
     return (
       <div className={cn("relative", className)} ref={ref} {...props}>
-        <div className="h-2 w-full overflow-hidden rounded-full bg-surface">
+        <div className="h-2.5 w-full overflow-hidden rounded-full bg-border/50">
           <motion.div
-            className={cn("h-full rounded-full", color || "bg-primary")}
+            className={cn("h-full rounded-full bg-gradient-to-r", color || "from-primary to-primary-light")}
             initial={{ width: 0 }}
             animate={{ width: `${pct}%` }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           />
         </div>
         {showLabel && (

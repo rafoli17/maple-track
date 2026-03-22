@@ -63,7 +63,7 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
         </div>
         <Link
           href="/programs/compare"
-          className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-card"
+          className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:shadow-md"
         >
           Comparar Programas
         </Link>
@@ -78,7 +78,7 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Buscar programa..."
-            className="h-10 w-full rounded-lg border border-border bg-card pl-9 pr-4 text-sm text-foreground placeholder:text-foreground-dim focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="h-10 w-full rounded-xl border border-border bg-white pl-9 pr-4 text-sm text-foreground placeholder:text-foreground-dim focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
         <div className="flex items-center gap-2">
@@ -86,7 +86,7 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="h-10 rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="h-10 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>
@@ -106,10 +106,10 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
             <Link
               key={program.id}
               href={`/programs/${program.id}`}
-              className="group rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
+              className="group rounded-2xl bg-white p-6 shadow-sm transition-all hover:shadow-md"
             >
               <div className="mb-3 flex items-start justify-between">
-                <span className="rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                   {categoryLabels[program.category] || program.category}
                 </span>
                 <ArrowRight className="h-4 w-4 text-foreground-dim transition-transform group-hover:translate-x-1 group-hover:text-primary" />
@@ -143,7 +143,7 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-16">
+        <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
           <Search className="mb-3 h-10 w-10 text-foreground-dim" />
           <p className="text-sm text-foreground-muted">
             {programs.length === 0

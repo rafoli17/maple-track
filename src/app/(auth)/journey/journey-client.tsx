@@ -51,7 +51,7 @@ export function JourneyClient({ activePlan, phases }: JourneyClientProps) {
     return (
       <div className="space-y-6">
         <h1 className="text-2xl font-bold text-foreground">Jornada</h1>
-        <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-16">
+        <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
           <MapPin className="mb-3 h-10 w-10 text-foreground-dim" />
           <p className="mb-2 text-base font-medium text-foreground">
             Nenhum plano ativo
@@ -61,7 +61,7 @@ export function JourneyClient({ activePlan, phases }: JourneyClientProps) {
           </p>
           <Link
             href="/programs"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary-light"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light"
           >
             Explorar Programas
             <ArrowRight className="h-4 w-4" />
@@ -91,7 +91,7 @@ export function JourneyClient({ activePlan, phases }: JourneyClientProps) {
       </div>
 
       {/* Progress bar */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-2xl bg-white p-5 shadow-sm">
         <div className="mb-2 flex items-center justify-between text-xs text-foreground-dim">
           <span>Progresso geral</span>
           <span>{progress}%</span>
@@ -132,7 +132,7 @@ export function JourneyClient({ activePlan, phases }: JourneyClientProps) {
                 {/* Phase content */}
                 <Link
                   href={`/journey/${phase.id}`}
-                  className="group mb-4 flex-1 rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/50"
+                  className="group mb-4 flex-1 rounded-2xl bg-white p-5 shadow-sm transition-all hover:shadow-md"
                 >
                   <div className="flex items-start justify-between">
                     <div>
@@ -141,7 +141,7 @@ export function JourneyClient({ activePlan, phases }: JourneyClientProps) {
                           Fase {phase.phaseNumber || index + 1}
                         </span>
                         <span
-                          className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium ${config.bgColor} ${config.color}`}
+                          className={`rounded-full px-2.5 py-0.5 text-[10px] font-medium ${config.bgColor} ${config.color}`}
                         >
                           {statusLabels[phase.status] || phase.status}
                         </span>
@@ -192,7 +192,7 @@ export function JourneyClient({ activePlan, phases }: JourneyClientProps) {
           })}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-16">
+        <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
           <MapPin className="mb-3 h-10 w-10 text-foreground-dim" />
           <p className="text-sm text-foreground-muted">
             Nenhuma fase criada ainda para este plano.

@@ -32,17 +32,17 @@ function LoginContent() {
 
   if (isVerify || emailSent) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="flex min-h-screen items-center justify-center bg-white px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="w-full max-w-md text-center"
         >
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-[#E31C5F]/[0.08] text-[#E31C5F] shadow-sm">
             <svg
-              width="32"
-              height="32"
+              width="36"
+              height="36"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -54,10 +54,10 @@ function LoginContent() {
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
           </div>
-          <h1 className="mb-2 text-2xl font-bold text-foreground">
+          <h1 className="mb-3 text-2xl font-bold text-[#222222]">
             Verifique seu email
           </h1>
-          <p className="text-foreground-muted">
+          <p className="text-[#717171]">
             Enviamos um link m&aacute;gico para o seu email. Clique no link para
             fazer login.
           </p>
@@ -67,11 +67,11 @@ function LoginContent() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-white px-4">
       {/* Background gradient effect */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -bottom-1/2 right-0 h-[600px] w-[600px] rounded-full bg-accent/5 blur-3xl" />
+        <div className="absolute -top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 rounded-full bg-[#E31C5F]/[0.03] blur-3xl" />
+        <div className="absolute -bottom-1/2 right-0 h-[600px] w-[600px] rounded-full bg-[#008489]/[0.03] blur-3xl" />
       </div>
 
       <motion.div
@@ -81,30 +81,30 @@ function LoginContent() {
         className="relative z-10 w-full max-w-md"
       >
         {/* Logo */}
-        <div className="mb-8 flex flex-col items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <MapleLeaf size={32} />
+        <div className="mb-10 flex flex-col items-center gap-4">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#E31C5F]/[0.08] text-[#E31C5F] shadow-sm">
+            <MapleLeaf size={36} />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground">
-            Maple<span className="text-primary">Track</span>
+          <h1 className="text-2xl font-bold tracking-tight text-[#222222]">
+            Maple<span className="text-[#E31C5F]">Track</span>
           </h1>
-          <p className="text-center text-sm text-foreground-muted">
+          <p className="text-center text-sm text-[#717171]">
             Seu GPS para imigrar para o Canad&aacute;
           </p>
         </div>
 
         {/* Card */}
-        <div className="rounded-xl border border-border bg-card p-8">
-          <h2 className="mb-1 text-center text-lg font-semibold text-foreground">
+        <div className="rounded-2xl bg-white p-8 shadow-lg">
+          <h2 className="mb-1 text-center text-lg font-semibold text-[#222222]">
             Bem-vindo de volta
           </h2>
-          <p className="mb-6 text-center text-sm text-foreground-muted">
+          <p className="mb-8 text-center text-sm text-[#717171]">
             Entre para acompanhar sua jornada
           </p>
 
           {/* Error message */}
           {error && (
-            <div className="mb-4 rounded-lg bg-error/10 px-4 py-3 text-sm text-error">
+            <div className="mb-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
               {error === "OAuthAccountNotLinked"
                 ? "Este email j\u00e1 est\u00e1 associado a outra conta."
                 : "Ocorreu um erro ao fazer login. Tente novamente."}
@@ -115,7 +115,7 @@ function LoginContent() {
           <button
             onClick={handleGoogleSignIn}
             disabled={isLoading}
-            className="flex w-full items-center justify-center gap-3 rounded-lg border border-border bg-surface px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-card disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex w-full items-center justify-center gap-3 rounded-xl border border-[#DDDDDD] bg-white px-4 py-3.5 text-sm font-medium text-[#222222] shadow-sm transition-all duration-200 hover:-translate-y-px hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
           >
             <svg width="18" height="18" viewBox="0 0 18 18">
               <path
@@ -139,10 +139,10 @@ function LoginContent() {
           </button>
 
           {/* Divider */}
-          <div className="my-6 flex items-center gap-3">
-            <div className="h-px flex-1 bg-border" />
-            <span className="text-xs text-foreground-dim">ou</span>
-            <div className="h-px flex-1 bg-border" />
+          <div className="my-7 flex items-center gap-4">
+            <div className="h-px flex-1 bg-[#EBEBEB]" />
+            <span className="text-xs font-medium text-[#717171]">ou</span>
+            <div className="h-px flex-1 bg-[#EBEBEB]" />
           </div>
 
           {/* Email Sign In */}
@@ -150,7 +150,7 @@ function LoginContent() {
             <div>
               <label
                 htmlFor="email"
-                className="mb-1.5 block text-sm font-medium text-foreground"
+                className="mb-2 block text-sm font-medium text-[#222222]"
               >
                 Email
               </label>
@@ -160,14 +160,14 @@ function LoginContent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="seu@email.com"
-                className="w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-foreground placeholder:text-foreground-dim focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full rounded-xl border border-[#DDDDDD] bg-white px-4 py-3 text-sm text-[#222222] placeholder:text-[#B0B0B0] transition-all focus:border-[#222222] focus:outline-none focus:ring-1 focus:ring-[#222222]"
                 required
               />
             </div>
             <button
               type="submit"
               disabled={isLoading || !email}
-              className="w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-light disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-xl bg-[#E31C5F] px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-px hover:bg-[#d1185a] hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isLoading ? "Enviando..." : "Enviar link m\u00e1gico"}
             </button>
@@ -175,7 +175,7 @@ function LoginContent() {
         </div>
 
         {/* Footer */}
-        <p className="mt-6 text-center text-xs text-foreground-dim">
+        <p className="mt-8 text-center text-xs text-[#717171]">
           Ao entrar, voc&ecirc; concorda com nossos termos de uso e
           pol&iacute;tica de privacidade.
         </p>
@@ -188,8 +188,8 @@ export default function LoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-background">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        <div className="flex min-h-screen items-center justify-center bg-white">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#E31C5F] border-t-transparent" />
         </div>
       }
     >

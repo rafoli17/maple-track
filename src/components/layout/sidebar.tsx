@@ -38,20 +38,22 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "hidden h-screen flex-col border-r border-sidebar-border bg-sidebar-background transition-all duration-300 md:flex",
-        isCollapsed ? "w-16" : "w-64"
+        "hidden h-screen flex-col border-r border-border/60 bg-white shadow-sm transition-all duration-300 md:flex",
+        isCollapsed ? "w-[72px]" : "w-64"
       )}
     >
       {/* Logo */}
-      <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-4">
+      <div className="flex h-16 items-center gap-3 px-5">
         <MapleLeaf size={28} className="shrink-0 text-primary" />
         {!isCollapsed && (
-          <span className="text-lg font-bold text-foreground">MapleTrack</span>
+          <span className="text-lg font-bold tracking-tight text-[#222222]">
+            MapleTrack
+          </span>
         )}
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-1 overflow-y-auto px-2 py-4">
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
         {navItems.map((item) => {
           const isActive =
             pathname === item.href || pathname?.startsWith(item.href + "/");
@@ -62,14 +64,14 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-primary/10 text-primary"
-                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  ? "bg-primary/8 text-primary"
+                  : "text-[#717171] hover:bg-[#F7F7F7] hover:text-[#222222]"
               )}
               title={isCollapsed ? item.label : undefined}
             >
-              <Icon className="h-5 w-5 shrink-0" />
+              <Icon className={cn("h-5 w-5 shrink-0", isActive && "stroke-[2.25]")} />
               {!isCollapsed && <span>{item.label}</span>}
             </Link>
           );
@@ -79,7 +81,7 @@ export function Sidebar() {
       {/* Collapse toggle */}
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="flex h-12 items-center justify-center border-t border-sidebar-border text-sidebar-foreground transition-colors hover:text-foreground"
+        className="flex h-12 items-center justify-center border-t border-border/60 text-[#717171] transition-colors hover:bg-[#F7F7F7] hover:text-[#222222]"
       >
         {isCollapsed ? (
           <ChevronRight className="h-5 w-5" />

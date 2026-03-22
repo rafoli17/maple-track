@@ -21,8 +21,8 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
         </p>
       </div>
 
-      <div className="rounded-xl border border-border bg-card p-6 space-y-4">
-        <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+      <div className="rounded-2xl bg-white p-8 shadow-sm space-y-4">
+        <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
           <User className="h-5 w-5 text-primary" />
           Perfil
         </h2>
@@ -51,8 +51,8 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-card p-6 space-y-4">
-        <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+      <div className="rounded-2xl bg-white p-8 shadow-sm space-y-4">
+        <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
           <Settings className="h-5 w-5 text-primary" />
           Preferencias
         </h2>

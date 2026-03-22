@@ -70,7 +70,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
               return (
                 <div
                   key={status}
-                  className="rounded-xl border border-border bg-card p-3 text-center"
+                  className="rounded-2xl bg-white p-4 text-center shadow-sm"
                 >
                   <StatusIcon
                     className={`mx-auto mb-1 h-5 w-5 ${config.color}`}
@@ -101,7 +101,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
                 <h2 className="text-base font-semibold text-foreground">
                   {name}
                 </h2>
-                <span className="rounded-md bg-surface px-2 py-0.5 text-xs text-foreground-dim">
+                <span className="rounded-full bg-surface px-3 py-1 text-xs text-foreground-dim">
                   {docs.length} docs
                 </span>
               </div>
@@ -115,7 +115,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
                   return (
                     <div
                       key={doc.id}
-                      className="flex items-center gap-3 rounded-xl border border-border bg-card p-4"
+                      className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
                     >
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface">
                         <FileText className="h-5 w-5 text-foreground-dim" />
@@ -149,7 +149,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
           );
         })
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-16">
+        <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
           <FileText className="mb-3 h-10 w-10 text-foreground-dim" />
           <p className="mb-1 text-base font-medium text-foreground">
             Nenhum documento cadastrado

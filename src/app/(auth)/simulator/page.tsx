@@ -106,8 +106,8 @@ export default function SimulatorPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Form */}
         <div className="space-y-6 lg:col-span-2">
-          <div className="rounded-xl border border-border bg-card p-6">
-            <h2 className="mb-4 text-base font-semibold text-foreground">
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <h2 className="mb-4 text-base font-bold text-foreground">
               Aplicante Principal
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -119,7 +119,7 @@ export default function SimulatorPage() {
                   max="45"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
               </div>
               <div>
@@ -127,7 +127,7 @@ export default function SimulatorPage() {
                 <select
                   value={education}
                   onChange={(e) => setEducation(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 >
                   <option value="HIGH_SCHOOL">Ensino Medio</option>
                   <option value="ONE_YEAR_DIPLOMA">Diploma 1 ano</option>
@@ -143,7 +143,7 @@ export default function SimulatorPage() {
                 <select
                   value={clb}
                   onChange={(e) => setClb(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 >
                   {[4, 5, 6, 7, 8, 9, 10].map((l) => (
                     <option key={l} value={l}>CLB {l}</option>
@@ -155,7 +155,7 @@ export default function SimulatorPage() {
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 >
                   {[0, 1, 2, 3, 4, 5].map((y) => (
                     <option key={y} value={y}>
@@ -169,7 +169,7 @@ export default function SimulatorPage() {
                 <select
                   value={canadianExperience}
                   onChange={(e) => setCanadianExperience(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 >
                   {[0, 1, 2, 3, 4, 5].map((y) => (
                     <option key={y} value={y}>
@@ -182,9 +182,9 @@ export default function SimulatorPage() {
           </div>
 
           {/* Spouse */}
-          <div className="rounded-xl border border-border bg-card p-6">
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
             <div className="flex items-center justify-between">
-              <h2 className="text-base font-semibold text-foreground">Conjuge</h2>
+              <h2 className="text-base font-bold text-foreground">Conjuge</h2>
               <label className="flex cursor-pointer items-center gap-2">
                 <input
                   type="checkbox"
@@ -202,7 +202,7 @@ export default function SimulatorPage() {
                   <select
                     value={spouseEducation}
                     onChange={(e) => setSpouseEducation(e.target.value)}
-                    className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   >
                     <option value="HIGH_SCHOOL">Ensino Medio</option>
                     <option value="ONE_YEAR_DIPLOMA">Diploma 1 ano</option>
@@ -217,7 +217,7 @@ export default function SimulatorPage() {
                   <select
                     value={spouseClb}
                     onChange={(e) => setSpouseClb(e.target.value)}
-                    className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   >
                     {[4, 5, 6, 7, 8, 9, 10].map((l) => (
                       <option key={l} value={l}>CLB {l}</option>
@@ -229,7 +229,7 @@ export default function SimulatorPage() {
                   <select
                     value={spouseExperience}
                     onChange={(e) => setSpouseExperience(e.target.value)}
-                    className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   >
                     {[0, 1, 2, 3, 4, 5].map((y) => (
                       <option key={y} value={y}>
@@ -245,12 +245,12 @@ export default function SimulatorPage() {
           <div className="flex gap-3">
             <button
               onClick={reset}
-              className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-card"
+              className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:shadow-md"
             >
               <RotateCcw className="h-4 w-4" />
               Resetar
             </button>
-            <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-light">
+            <button className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light">
               <Save className="h-4 w-4" />
               Salvar Score
             </button>
@@ -259,7 +259,7 @@ export default function SimulatorPage() {
 
         {/* Results */}
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-6 text-center">
+          <div className="rounded-2xl bg-white p-6 shadow-sm text-center">
             <Calculator className="mx-auto mb-2 h-6 w-6 text-primary" />
             <p className="text-sm text-foreground-muted">Score CRS Total</p>
             <p className="mt-1 text-5xl font-bold text-primary">{calculate.total}</p>
@@ -272,7 +272,7 @@ export default function SimulatorPage() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-6">
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
             <h3 className="mb-3 text-sm font-semibold text-foreground">Detalhamento</h3>
             <div className="space-y-3">
               {[
@@ -294,7 +294,7 @@ export default function SimulatorPage() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-6">
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
             <h3 className="mb-3 text-sm font-semibold text-foreground">Core Breakdown</h3>
             <div className="space-y-2 text-xs">
               {[

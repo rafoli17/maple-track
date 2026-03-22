@@ -43,7 +43,7 @@ export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
           return (
             <div
               key={profile.id}
-              className="rounded-xl border border-border bg-card p-6"
+              className="rounded-2xl bg-white p-6 shadow-sm"
             >
               {/* Profile header */}
               <div className="mb-4 flex items-center gap-3">
@@ -72,7 +72,7 @@ export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
                     return (
                       <div
                         key={test.id}
-                        className="rounded-lg border border-border bg-surface p-4"
+                        className="rounded-2xl bg-surface p-4"
                       >
                         <div className="mb-3 flex items-center justify-between">
                           <div className="flex items-center gap-2">
@@ -185,7 +185,7 @@ export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
                   })}
                 </div>
               ) : (
-                <div className="flex h-24 items-center justify-center rounded-lg border border-dashed border-border text-sm text-foreground-dim">
+                <div className="flex h-24 items-center justify-center rounded-2xl border-2 border-dashed border-border text-sm text-foreground-dim">
                   Nenhum teste de idioma registrado.
                 </div>
               )}
@@ -193,7 +193,7 @@ export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
           );
         })
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-16">
+        <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
           <Languages className="mb-3 h-10 w-10 text-foreground-dim" />
           <p className="mb-1 text-base font-medium text-foreground">
             Nenhum perfil encontrado

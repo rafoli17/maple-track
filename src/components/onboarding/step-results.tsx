@@ -25,8 +25,8 @@ export function StepResults({ data }: StepProps) {
   ];
 
   return (
-    <div className="rounded-xl border border-border bg-card p-6 text-center">
-      <h2 className="mb-2 text-lg font-semibold text-foreground">
+    <div className="rounded-2xl bg-white p-8 text-center shadow-sm">
+      <h2 className="mb-2 text-xl font-bold text-foreground">
         Seu Resultado
       </h2>
       <p className="mb-8 text-sm text-foreground-muted">
@@ -57,7 +57,7 @@ export function StepResults({ data }: StepProps) {
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.3 + i * 0.1 }}
-            className="flex items-center justify-between rounded-lg border border-border/50 bg-surface p-3"
+            className="flex items-center justify-between rounded-2xl bg-surface p-4 shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-success" />
@@ -65,7 +65,7 @@ export function StepResults({ data }: StepProps) {
             </div>
             <span
               className={cn(
-                "rounded-full px-2 py-0.5 text-xs font-semibold",
+                "rounded-full px-3 py-1 text-xs font-semibold",
                 program.matchPct >= 80
                   ? "bg-success/10 text-success"
                   : program.matchPct >= 60

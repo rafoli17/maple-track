@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MapleTrack — Opções de Paleta de Cores</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #09090B;
+    color: #FAFAFA;
+    padding: 40px;
+    min-height: 100vh;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    color: #71717A;
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+  .option {
+    margin-bottom: 64px;
+    border: 1px solid #27272A;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .option-header {
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .option-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .option-name {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .option-desc {
+    color: #A1A1AA;
+    font-size: 14px;
+    padding: 0 32px 20px;
+    line-height: 1.6;
+  }
+
+  /* Color Swatches */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0;
+  }
+  .swatch {
+    padding: 20px 16px;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .swatch-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .swatch-hex {
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.7;
+  }
+  .dark-text { color: #09090B; }
+  .light-text { color: #FAFAFA; }
+
+  /* Mini Dashboard Preview */
+  .preview {
+    margin: 0 32px 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #27272A;
+    height: 320px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+  }
+  .preview-sidebar {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .preview-logo {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .preview-nav-item {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #A1A1AA;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .preview-nav-item.active {
+    color: white;
+    font-weight: 600;
+  }
+  .preview-main {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    overflow: hidden;
+  }
+  .preview-card {
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    margin-bottom: 4px;
+  }
+  .card-value {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .card-sub {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-top: 4px;
+  }
+  .progress-bar {
+    height: 6px;
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+
+  /* Trend tag */
+  .trend-tags {
+    display: flex;
+    gap: 8px;
+    padding: 0 32px 24px;
+    flex-wrap: wrap;
+  }
+  .trend-tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #27272A;
+    color: #A1A1AA;
+  }
+
+  .vote-section {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid #27272A;
+    margin-top: 20px;
+  }
+  .vote-section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .vote-section p {
+    color: #71717A;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<h1>MapleTrack — Paleta de Cores</h1>
+<p class="subtitle">3 opções modernas com identidade canadense. Tendências UI 2026: dark-mode first, micro-accents, elevated neutrals.</p>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- OPTION A: AURORA BOREAL -->
+<!-- ═══════════════════════════════════════ -->
+<div class="option">
+  <div class="option-header">
+    <span class="option-tag" style="background: #0D9488; color: white;">OPÇÃO A</span>
+    <span class="option-name">Aurora Boreal</span>
+  </div>
+  <p class="option-desc">
+    Inspirada nas Northern Lights do Canadá. Base escura com accent teal/ciano que lembra as auroras do norte.
+    O maple red aparece como accent de urgência. Sofisticada, tech-forward, confiável.
+    <strong>Referência: Linear, Vercel, Raycast.</strong>
+  </p>
+
+  <div class="trend-tags">
+    <span class="trend-tag">Dark Mode First</span>
+    <span class="trend-tag">Northern Lights</span>
+    <span class="trend-tag">Micro Glow</span>
+    <span class="trend-tag">Tech-Forward</span>
+  </div>
+
+  <div class="swatches">
+    <div class="swatch light-text" style="background: #020617;"><span class="swatch-name">Background</span><span class="swatch-hex">#020617</span></div>
+    <div class="swatch light-text" style="background: #0F172A;"><span class="swatch-name">Surface</span><span class="swatch-hex">#0F172A</span></div>
+    <div class="swatch light-text" style="background: #1E293B;"><span class="swatch-name">Card</span><span class="swatch-hex">#1E293B</span></div>
+    <div class="swatch light-text" style="background: #334155;"><span class="swatch-name">Border</span><span class="swatch-hex">#334155</span></div>
+    <div class="swatch dark-text" style="background: #0D9488;"><span class="swatch-name">Primary (Teal)</span><span class="swatch-hex">#0D9488</span></div>
+    <div class="swatch dark-text" style="background: #14B8A6;"><span class="swatch-name">Primary Light</span><span class="swatch-hex">#14B8A6</span></div>
+    <div class="swatch light-text" style="background: #E11D48;"><span class="swatch-name">Maple Red</span><span class="swatch-hex">#E11D48</span></div>
+    <div class="swatch dark-text" style="background: #38BDF8;"><span class="swatch-name">Info / Link</span><span class="swatch-hex">#38BDF8</span></div>
+    <div class="swatch dark-text" style="background: #10B981;"><span class="swatch-name">Success</span><span class="swatch-hex">#10B981</span></div>
+    <div class="swatch dark-text" style="background: #F59E0B;"><span class="swatch-name">Warning</span><span class="swatch-hex">#F59E0B</span></div>
+    <div class="swatch dark-text" style="background: #F1F5F9;"><span class="swatch-name">Text</span><span class="swatch-hex">#F1F5F9</span></div>
+    <div class="swatch dark-text" style="background: #94A3B8;"><span class="swatch-name">Text Muted</span><span class="swatch-hex">#94A3B8</span></div>
+  </div>
+
+  <!-- Mini Dashboard Preview -->
+  <div style="padding: 24px 32px 8px; font-size: 13px; color: #71717A; font-weight: 600;">Preview do Dashboard:</div>
+  <div class="preview">
+    <div class="preview-sidebar" style="background: #0F172A; border-right: 1px solid #1E293B;">
+      <div class="preview-logo" style="color: #14B8A6;">🍁 MapleTrack</div>
+      <div class="preview-nav-item active" style="background: #1E293B; color: #14B8A6;">📊 Dashboard</div>
+      <div class="preview-nav-item">🗺️ Jornada</div>
+      <div class="preview-nav-item">📄 Documentos</div>
+      <div class="preview-nav-item">🗣️ Idiomas</div>
+      <div class="preview-nav-item">🧮 Simulador</div>
+      <div class="preview-nav-item">🏆 Conquistas</div>
+      <div style="margin-top: auto; padding: 12px; border-top: 1px solid #1E293B; display: flex; gap: 8px; align-items: center;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: #0D9488; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">R</div>
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: #E11D48; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">L</div>
+        <span style="font-size: 11px; color: #94A3B8; margin-left: 4px;">Guimarães</span>
+      </div>
+    </div>
+    <div class="preview-main" style="background: #020617;">
+      <div class="preview-card" style="background: #0F172A; border: 1px solid #1E293B; color: #F1F5F9;">
+        <div>
+          <div class="card-label" style="color: #94A3B8;">Progresso da Jornada</div>
+          <div class="card-value" style="color: #14B8A6;">42%</div>
+          <div class="card-sub" style="color: #64748B;">Express Entry CEC</div>
+        </div>
+        <div class="progress-bar" style="background: #1E293B;">
+          <div class="progress-fill" style="width: 42%; background: linear-gradient(90deg, #0D9488, #14B8A6);"></div>
+        </div>
+      </div>
+      <div class="preview-card" style="background: #0F172A; border: 1px solid #1E293B; color: #F1F5F9;">
+        <div>
+          <div class="card-label" style="color: #94A3B8;">CRS Score</div>
+          <div style="display: flex; gap: 16px; align-items: baseline;">
+            <div>
+              <div class="card-value">467</div>
+              <div class="card-sub" style="color: #64748B;">Rafael</div>
+            </div>
+            <div>
+              <div class="card-value" style="font-size: 20px; color: #94A3B8;">442</div>
+              <div class="card-sub" style="color: #64748B;">Luana</div>
+            </div>
+          </div>
+        </div>
+        <span class="badge" style="background: #0D948833; color: #14B8A6;">↑ +23 pts último cálculo</span>
+      </div>
+      <div class="preview-card" style="background: #0F172A; border: 1px solid #1E293B; color: #F1F5F9;">
+        <div>
+          <div class="card-label" style="color: #94A3B8;">Próxima Ação</div>
+          <div style="font-size: 14px; font-weight: 600; margin-top: 4px;">Agendar IELTS</div>
+          <div class="card-sub" style="color: #64748B;">Atribuído: Rafael</div>
+        </div>
+        <span class="badge" style="background: #F59E0B33; color: #F59E0B;">⏰ Vence em 12 dias</span>
+      </div>
+      <div class="preview-card" style="background: #0F172A; border: 1px solid #1E293B; color: #F1F5F9;">
+        <div>
+          <div class="card-label" style="color: #94A3B8;">Documentos</div>
+          <div class="card-value">7<span style="font-size: 14px; color: #64748B;">/12</span></div>
+          <div class="card-sub" style="color: #64748B;">prontos</div>
+        </div>
+        <div class="progress-bar" style="background: #1E293B;">
+          <div class="progress-fill" style="width: 58%; background: #10B981;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- OPTION B: MAPLE CRIMSON -->
+<!-- ═══════════════════════════════════════ -->
+<div class="option">
+  <div class="option-header">
+    <span class="option-tag" style="background: #DC2626; color: white;">OPÇÃO B</span>
+    <span class="option-name">Maple Crimson</span>
+  </div>
+  <p class="option-desc">
+    Identidade canadense forte com o vermelho maple como cor protagonista. Base zinc escura para elegância.
+    O vermelho guia ações e progresso, com azul como secundário para dados.
+    <strong>Referência: Notion, Apple, Figma.</strong>
+  </p>
+
+  <div class="trend-tags">
+    <span class="trend-tag">Canadian Identity</span>
+    <span class="trend-tag">Warm Accent</span>
+    <span class="trend-tag">Bold Primary</span>
+    <span class="trend-tag">Elegant Dark</span>
+  </div>
+
+  <div class="swatches">
+    <div class="swatch light-text" style="background: #09090B;"><span class="swatch-name">Background</span><span class="swatch-hex">#09090B</span></div>
+    <div class="swatch light-text" style="background: #18181B;"><span class="swatch-name">Surface</span><span class="swatch-hex">#18181B</span></div>
+    <div class="swatch light-text" style="background: #27272A;"><span class="swatch-name">Card</span><span class="swatch-hex">#27272A</span></div>
+    <div class="swatch light-text" style="background: #3F3F46;"><span class="swatch-name">Border</span><span class="swatch-hex">#3F3F46</span></div>
+    <div class="swatch light-text" style="background: #DC2626;"><span class="swatch-name">Primary (Maple)</span><span class="swatch-hex">#DC2626</span></div>
+    <div class="swatch dark-text" style="background: #EF4444;"><span class="swatch-name">Primary Light</span><span class="swatch-hex">#EF4444</span></div>
+    <div class="swatch dark-text" style="background: #3B82F6;"><span class="swatch-name">Secondary (Blue)</span><span class="swatch-hex">#3B82F6</span></div>
+    <div class="swatch dark-text" style="background: #60A5FA;"><span class="swatch-name">Info / Link</span><span class="swatch-hex">#60A5FA</span></div>
+    <div class="swatch dark-text" style="background: #22C55E;"><span class="swatch-name">Success</span><span class="swatch-hex">#22C55E</span></div>
+    <div class="swatch dark-text" style="background: #FBBF24;"><span class="swatch-name">Warning</span><span class="swatch-hex">#FBBF24</span></div>
+    <div class="swatch dark-text" style="background: #FAFAFA;"><span class="swatch-name">Text</span><span class="swatch-hex">#FAFAFA</span></div>
+    <div class="swatch dark-text" style="background: #A1A1AA;"><span class="swatch-name">Text Muted</span><span class="swatch-hex">#A1A1AA</span></div>
+  </div>
+
+  <div style="padding: 24px 32px 8px; font-size: 13px; color: #71717A; font-weight: 600;">Preview do Dashboard:</div>
+  <div class="preview">
+    <div class="preview-sidebar" style="background: #18181B; border-right: 1px solid #27272A;">
+      <div class="preview-logo" style="color: #EF4444;">🍁 MapleTrack</div>
+      <div class="preview-nav-item active" style="background: #27272A; color: #EF4444;">📊 Dashboard</div>
+      <div class="preview-nav-item">🗺️ Jornada</div>
+      <div class="preview-nav-item">📄 Documentos</div>
+      <div class="preview-nav-item">🗣️ Idiomas</div>
+      <div class="preview-nav-item">🧮 Simulador</div>
+      <div class="preview-nav-item">🏆 Conquistas</div>
+      <div style="margin-top: auto; padding: 12px; border-top: 1px solid #27272A; display: flex; gap: 8px; align-items: center;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: #DC2626; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">R</div>
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: #3B82F6; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">L</div>
+        <span style="font-size: 11px; color: #A1A1AA; margin-left: 4px;">Guimarães</span>
+      </div>
+    </div>
+    <div class="preview-main" style="background: #09090B;">
+      <div class="preview-card" style="background: #18181B; border: 1px solid #27272A; color: #FAFAFA;">
+        <div>
+          <div class="card-label" style="color: #A1A1AA;">Progresso da Jornada</div>
+          <div class="card-value" style="color: #EF4444;">42%</div>
+          <div class="card-sub" style="color: #71717A;">Express Entry CEC</div>
+        </div>
+        <div class="progress-bar" style="background: #27272A;">
+          <div class="progress-fill" style="width: 42%; background: linear-gradient(90deg, #DC2626, #EF4444);"></div>
+        </div>
+      </div>
+      <div class="preview-card" style="background: #18181B; border: 1px solid #27272A; color: #FAFAFA;">
+        <div>
+          <div class="card-label" style="color: #A1A1AA;">CRS Score</div>
+          <div style="display: flex; gap: 16px; align-items: baseline;">
+            <div>
+              <div class="card-value">467</div>
+              <div class="card-sub" style="color: #71717A;">Rafael</div>
+            </div>
+            <div>
+              <div class="card-value" style="font-size: 20px; color: #A1A1AA;">442</div>
+              <div class="card-sub" style="color: #71717A;">Luana</div>
+            </div>
+          </div>
+        </div>
+        <span class="badge" style="background: #DC262633; color: #EF4444;">↑ +23 pts último cálculo</span>
+      </div>
+      <div class="preview-card" style="background: #18181B; border: 1px solid #27272A; color: #FAFAFA;">
+        <div>
+          <div class="card-label" style="color: #A1A1AA;">Próxima Ação</div>
+          <div style="font-size: 14px; font-weight: 600; margin-top: 4px;">Agendar IELTS</div>
+          <div class="card-sub" style="color: #71717A;">Atribuído: Rafael</div>
+        </div>
+        <span class="badge" style="background: #FBBF2433; color: #FBBF24;">⏰ Vence em 12 dias</span>
+      </div>
+      <div class="preview-card" style="background: #18181B; border: 1px solid #27272A; color: #FAFAFA;">
+        <div>
+          <div class="card-label" style="color: #A1A1AA;">Documentos</div>
+          <div class="card-value">7<span style="font-size: 14px; color: #71717A;">/12</span></div>
+          <div class="card-sub" style="color: #71717A;">prontos</div>
+        </div>
+        <div class="progress-bar" style="background: #27272A;">
+          <div class="progress-fill" style="width: 58%; background: #22C55E;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- OPTION C: MIDNIGHT INDIGO -->
+<!-- ═══════════════════════════════════════ -->
+<div class="option">
+  <div class="option-header">
+    <span class="option-tag" style="background: #6366F1; color: white;">OPÇÃO C</span>
+    <span class="option-name">Midnight Indigo</span>
+  </div>
+  <p class="option-desc">
+    Sofisticação premium com indigo/violet como protagonista. Base deep navy. Maple red como micro-accent.
+    Gradient sutil indigo→violet nos elementos de destaque. Sensação premium, futurista.
+    <strong>Referência: Stripe, Linear, Arc Browser.</strong>
+  </p>
+
+  <div class="trend-tags">
+    <span class="trend-tag">Premium Feel</span>
+    <span class="trend-tag">Soft Gradients</span>
+    <span class="trend-tag">Indigo Primary</span>
+    <span class="trend-tag">Futuristic</span>
+  </div>
+
+  <div class="swatches">
+    <div class="swatch light-text" style="background: #030712;"><span class="swatch-name">Background</span><span class="swatch-hex">#030712</span></div>
+    <div class="swatch light-text" style="background: #111827;"><span class="swatch-name">Surface</span><span class="swatch-hex">#111827</span></div>
+    <div class="swatch light-text" style="background: #1F2937;"><span class="swatch-name">Card</span><span class="swatch-hex">#1F2937</span></div>
+    <div class="swatch light-text" style="background: #374151;"><span class="swatch-name">Border</span><span class="swatch-hex">#374151</span></div>
+    <div class="swatch light-text" style="background: #6366F1;"><span class="swatch-name">Primary (Indigo)</span><span class="swatch-hex">#6366F1</span></div>
+    <div class="swatch dark-text" style="background: #818CF8;"><span class="swatch-name">Primary Light</span><span class="swatch-hex">#818CF8</span></div>
+    <div class="swatch light-text" style="background: #E11D48;"><span class="swatch-name">Maple Accent</span><span class="swatch-hex">#E11D48</span></div>
+    <div class="swatch dark-text" style="background: #22D3EE;"><span class="swatch-name">Info / Cyan</span><span class="swatch-hex">#22D3EE</span></div>
+    <div class="swatch dark-text" style="background: #34D399;"><span class="swatch-name">Success</span><span class="swatch-hex">#34D399</span></div>
+    <div class="swatch dark-text" style="background: #FBBF24;"><span class="swatch-name">Warning</span><span class="swatch-hex">#FBBF24</span></div>
+    <div class="swatch dark-text" style="background: #F9FAFB;"><span class="swatch-name">Text</span><span class="swatch-hex">#F9FAFB</span></div>
+    <div class="swatch dark-text" style="background: #9CA3AF;"><span class="swatch-name">Text Muted</span><span class="swatch-hex">#9CA3AF</span></div>
+  </div>
+
+  <div style="padding: 24px 32px 8px; font-size: 13px; color: #71717A; font-weight: 600;">Preview do Dashboard:</div>
+  <div class="preview">
+    <div class="preview-sidebar" style="background: #111827; border-right: 1px solid #1F2937;">
+      <div class="preview-logo" style="color: #818CF8;">🍁 MapleTrack</div>
+      <div class="preview-nav-item active" style="background: #1F2937; color: #818CF8;">📊 Dashboard</div>
+      <div class="preview-nav-item">🗺️ Jornada</div>
+      <div class="preview-nav-item">📄 Documentos</div>
+      <div class="preview-nav-item">🗣️ Idiomas</div>
+      <div class="preview-nav-item">🧮 Simulador</div>
+      <div class="preview-nav-item">🏆 Conquistas</div>
+      <div style="margin-top: auto; padding: 12px; border-top: 1px solid #1F2937; display: flex; gap: 8px; align-items: center;">
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: #6366F1; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">R</div>
+        <div style="width: 28px; height: 28px; border-radius: 50%; background: #E11D48; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;">L</div>
+        <span style="font-size: 11px; color: #9CA3AF; margin-left: 4px;">Guimarães</span>
+      </div>
+    </div>
+    <div class="preview-main" style="background: #030712;">
+      <div class="preview-card" style="background: #111827; border: 1px solid #1F2937; color: #F9FAFB;">
+        <div>
+          <div class="card-label" style="color: #9CA3AF;">Progresso da Jornada</div>
+          <div class="card-value" style="color: #818CF8;">42%</div>
+          <div class="card-sub" style="color: #6B7280;">Express Entry CEC</div>
+        </div>
+        <div class="progress-bar" style="background: #1F2937;">
+          <div class="progress-fill" style="width: 42%; background: linear-gradient(90deg, #6366F1, #818CF8);"></div>
+        </div>
+      </div>
+      <div class="preview-card" style="background: #111827; border: 1px solid #1F2937; color: #F9FAFB;">
+        <div>
+          <div class="card-label" style="color: #9CA3AF;">CRS Score</div>
+          <div style="display: flex; gap: 16px; align-items: baseline;">
+            <div>
+              <div class="card-value">467</div>
+              <div class="card-sub" style="color: #6B7280;">Rafael</div>
+            </div>
+            <div>
+              <div class="card-value" style="font-size: 20px; color: #9CA3AF;">442</div>
+              <div class="card-sub" style="color: #6B7280;">Luana</div>
+            </div>
+          </div>
+        </div>
+        <span class="badge" style="background: #6366F133; color: #818CF8;">↑ +23 pts último cálculo</span>
+      </div>
+      <div class="preview-card" style="background: #111827; border: 1px solid #1F2937; color: #F9FAFB;">
+        <div>
+          <div class="card-label" style="color: #9CA3AF;">Próxima Ação</div>
+          <div style="font-size: 14px; font-weight: 600; margin-top: 4px;">Agendar IELTS</div>
+          <div class="card-sub" style="color: #6B7280;">Atribuído: Rafael</div>
+        </div>
+        <span class="badge" style="background: #FBBF2433; color: #FBBF24;">⏰ Vence em 12 dias</span>
+      </div>
+      <div class="preview-card" style="background: #111827; border: 1px solid #1F2937; color: #F9FAFB;">
+        <div>
+          <div class="card-label" style="color: #9CA3AF;">Documentos</div>
+          <div class="card-value">7<span style="font-size: 14px; color: #6B7280;">/12</span></div>
+          <div class="card-sub" style="color: #6B7280;">prontos</div>
+        </div>
+        <div class="progress-bar" style="background: #1F2937;">
+          <div class="progress-fill" style="width: 58%; background: #34D399;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VOTE -->
+<div class="vote-section">
+  <h2>Qual paleta você prefere?</h2>
+  <p>Responda: <strong>A</strong> (Aurora Boreal), <strong>B</strong> (Maple Crimson) ou <strong>C</strong> (Midnight Indigo)</p>
+</div>
+
+</body>
+</html>

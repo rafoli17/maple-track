@@ -51,10 +51,10 @@ export default async function ProgramDetailPage({ params }: ProgramDetailPagePro
       </Link>
 
       {/* Header */}
-      <div className="rounded-xl border border-border bg-card p-6">
+      <div className="rounded-2xl bg-white p-8 shadow-sm">
         <div className="mb-4 flex items-start justify-between">
           <div>
-            <span className="mb-2 inline-block rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
+            <span className="mb-2 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
               {program.category}
             </span>
             <h1 className="text-2xl font-bold text-foreground">
@@ -72,21 +72,21 @@ export default async function ProgramDetailPage({ params }: ProgramDetailPagePro
 
       {/* Key stats */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-border bg-card p-4 text-center">
+        <div className="rounded-2xl bg-white p-5 text-center shadow-sm">
           <Clock className="mx-auto mb-2 h-6 w-6 text-info" />
           <p className="text-2xl font-bold text-foreground">
             {program.processingTimeMonths || "--"}
           </p>
           <p className="text-xs text-foreground-dim">meses de processamento</p>
         </div>
-        <div className="rounded-xl border border-border bg-card p-4 text-center">
+        <div className="rounded-2xl bg-white p-5 text-center shadow-sm">
           <Target className="mx-auto mb-2 h-6 w-6 text-primary" />
           <p className="text-2xl font-bold text-foreground">
             {program.minimumCRS || "N/A"}
           </p>
           <p className="text-xs text-foreground-dim">CRS minimo</p>
         </div>
-        <div className="rounded-xl border border-border bg-card p-4 text-center">
+        <div className="rounded-2xl bg-white p-5 text-center shadow-sm">
           <DollarSign className="mx-auto mb-2 h-6 w-6 text-success" />
           <p className="text-2xl font-bold text-foreground">
             {program.minimumFunds ? `$${program.minimumFunds}` : "N/A"}
@@ -96,8 +96,8 @@ export default async function ProgramDetailPage({ params }: ProgramDetailPagePro
       </div>
 
       {/* Requirements */}
-      <div className="rounded-xl border border-border bg-card p-6">
-        <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-foreground">
+      <div className="rounded-2xl bg-white p-8 shadow-sm">
+        <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
           <BookOpen className="h-5 w-5 text-foreground-muted" />
           Requisitos
         </h2>
@@ -126,8 +126,8 @@ export default async function ProgramDetailPage({ params }: ProgramDetailPagePro
 
       {/* CLB requirement */}
       {program.minimumCLB && (
-        <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="mb-2 text-lg font-semibold text-foreground">
+        <div className="rounded-2xl bg-white p-8 shadow-sm">
+          <h2 className="mb-2 text-lg font-bold text-foreground">
             Requisito de Idioma
           </h2>
           <p className="text-sm text-foreground-muted">
@@ -144,7 +144,7 @@ export default async function ProgramDetailPage({ params }: ProgramDetailPagePro
         <AddToPlanButton programId={program.id} />
         <Link
           href="/simulator"
-          className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-card"
+          className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-border px-6 py-3 text-sm font-medium text-foreground shadow-sm transition-all hover:shadow-md"
         >
           <Target className="h-4 w-4" />
           Simular meu CRS

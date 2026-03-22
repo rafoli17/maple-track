@@ -91,13 +91,13 @@ export function WizardContainer() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-2xl px-4 py-8">
+    <div className="mx-auto w-full max-w-2xl px-4 py-10">
       {/* Progress */}
-      <div className="mb-2 flex items-center justify-between text-sm text-foreground-muted">
+      <div className="mb-3 flex items-center justify-between text-sm text-foreground-muted">
         <span>Passo {currentStep + 1} de {TOTAL_STEPS}</span>
-        <span>{stepTitles[currentStep]}</span>
+        <span className="font-medium">{stepTitles[currentStep]}</span>
       </div>
-      <Progress value={((currentStep + 1) / TOTAL_STEPS) * 100} className="mb-8" />
+      <Progress value={((currentStep + 1) / TOTAL_STEPS) * 100} className="mb-10" />
 
       {/* Step content */}
       <AnimatePresence mode="wait" custom={direction}>
@@ -114,9 +114,10 @@ export function WizardContainer() {
       </AnimatePresence>
 
       {/* Navigation */}
-      <div className="mt-8 flex items-center justify-between">
+      <div className="mt-10 flex items-center justify-between">
         <Button
           variant="ghost"
+          className="rounded-xl"
           onClick={handleBack}
           disabled={currentStep === 0}
         >
@@ -125,12 +126,12 @@ export function WizardContainer() {
         </Button>
 
         {currentStep < TOTAL_STEPS - 1 ? (
-          <Button onClick={handleNext}>
+          <Button onClick={handleNext} className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
             Próximo
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         ) : (
-          <Button onClick={handleFinish} disabled={isFinishing}>
+          <Button onClick={handleFinish} disabled={isFinishing} className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
             {isFinishing ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

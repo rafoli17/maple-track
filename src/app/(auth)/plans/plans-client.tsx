@@ -68,10 +68,10 @@ export function PlansClient({ plans }: PlansClientProps) {
           return (
             <div
               key={priority}
-              className={`rounded-xl border bg-card p-6 transition-colors ${
+              className={`rounded-2xl p-6 transition-all ${
                 plan
-                  ? priorityColors[priority] || "border-border"
-                  : "border-dashed border-border"
+                  ? `bg-white shadow-sm hover:shadow-md ${priorityColors[priority] || ""}`
+                  : "border-2 border-dashed border-border bg-surface"
               }`}
             >
               <div className="mb-4 flex items-center justify-between">
@@ -79,7 +79,7 @@ export function PlansClient({ plans }: PlansClientProps) {
                   {priorityLabels[priority]}
                 </h2>
                 {plan && (
-                  <span className="flex items-center gap-1 rounded-md bg-surface px-2 py-0.5 text-xs text-foreground-muted">
+                  <span className="flex items-center gap-1 rounded-full bg-surface px-3 py-1 text-xs text-foreground-muted">
                     <StatusIcon className="h-3 w-3" />
                     {statusLabels[plan.status] || plan.status}
                   </span>
@@ -98,7 +98,7 @@ export function PlansClient({ plans }: PlansClientProps) {
                   </div>
 
                   {plan.targetDate && (
-                    <div className="rounded-lg bg-surface p-2">
+                    <div className="rounded-xl bg-surface p-3">
                       <p className="text-xs text-foreground-dim">Meta</p>
                       <p className="text-sm font-medium text-foreground">
                         {new Date(plan.targetDate).toLocaleDateString("pt-BR")}
@@ -122,7 +122,7 @@ export function PlansClient({ plans }: PlansClientProps) {
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-8">
-                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-surface">
+                  <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface">
                     <Plus className="h-6 w-6 text-foreground-dim" />
                   </div>
                   <p className="mb-3 text-sm text-foreground-dim">
@@ -130,7 +130,7 @@ export function PlansClient({ plans }: PlansClientProps) {
                   </p>
                   <Link
                     href="/programs"
-                    className="rounded-lg bg-primary/10 px-4 py-2 text-xs font-medium text-primary hover:bg-primary/20"
+                    className="rounded-full bg-primary/10 px-5 py-2 text-xs font-medium text-primary hover:bg-primary/20 transition-colors"
                   >
                     Escolher Programa
                   </Link>
@@ -142,8 +142,8 @@ export function PlansClient({ plans }: PlansClientProps) {
       </div>
 
       {plans.length > 0 && (
-        <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="mb-3 text-base font-semibold text-foreground">
+        <div className="rounded-2xl bg-white p-6 shadow-sm">
+          <h2 className="mb-3 text-base font-bold text-foreground">
             Dica
           </h2>
           <p className="text-sm text-foreground-muted">

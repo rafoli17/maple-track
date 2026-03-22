@@ -73,7 +73,7 @@ export function NotificationsClient({ notifications }: NotificationsClientProps)
         {unreadCount > 0 && (
           <button
             onClick={markAllAsRead}
-            className="rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground-muted transition-colors hover:bg-card hover:text-foreground"
+            className="rounded-xl border border-border px-4 py-2 text-xs font-medium text-foreground-muted shadow-sm transition-all hover:shadow-md hover:text-foreground"
           >
             Marcar todas como lidas
           </button>
@@ -91,15 +91,15 @@ export function NotificationsClient({ notifications }: NotificationsClientProps)
             return (
               <li
                 key={notif.id}
-                className={`rounded-xl border bg-card p-4 transition-colors ${
+                className={`rounded-2xl p-5 transition-all ${
                   isUnread
-                    ? "border-primary/30 bg-primary/5"
-                    : "border-border"
+                    ? "bg-white shadow-md border-l-4 border-primary"
+                    : "bg-white shadow-sm"
                 }`}
               >
                 <div className="flex items-start gap-3">
                   <div
-                    className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface`}
+                    className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface`}
                   >
                     <Icon className={`h-4 w-4 ${config.color}`} />
                   </div>
@@ -159,7 +159,7 @@ export function NotificationsClient({ notifications }: NotificationsClientProps)
           })}
         </ul>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-16">
+        <div className="flex flex-col items-center justify-center rounded-2xl bg-white py-16 shadow-sm">
           <Bell className="mb-3 h-10 w-10 text-foreground-dim" />
           <p className="mb-1 text-base font-medium text-foreground">
             Sem notificacoes

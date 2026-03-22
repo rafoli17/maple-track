@@ -16,7 +16,7 @@ interface AuthLayoutClientProps {
 
 export function AuthLayoutClient({ user, children }: AuthLayoutClientProps) {
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
+    <div className="flex h-screen overflow-hidden bg-[#F7F7F7]">
       {/* Sidebar - hidden on mobile */}
       <Sidebar />
 

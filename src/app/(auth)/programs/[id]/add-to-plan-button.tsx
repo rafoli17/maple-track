@@ -47,7 +47,7 @@ export function AddToPlanButton({ programId }: AddToPlanButtonProps) {
 
   if (isAdded) {
     return (
-      <div className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-success/10 px-6 py-3 text-sm font-medium text-success">
+      <div className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-success/10 px-6 py-3 text-sm font-medium text-success shadow-sm">
         <Check className="h-4 w-4" />
         Adicionado! Redirecionando...
       </div>
@@ -71,7 +71,7 @@ export function AddToPlanButton({ programId }: AddToPlanButtonProps) {
               key={opt.value}
               onClick={() => handleAdd(opt.value)}
               disabled={isLoading}
-              className="flex-1 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary disabled:opacity-50"
+              className="flex-1 rounded-xl border border-border bg-white px-3 py-2.5 text-sm font-medium text-foreground shadow-sm transition-all hover:shadow-md hover:border-primary hover:text-primary disabled:opacity-50"
             >
               {isLoading ? (
                 <Loader2 className="mx-auto h-4 w-4 animate-spin" />
@@ -94,7 +94,7 @@ export function AddToPlanButton({ programId }: AddToPlanButtonProps) {
   return (
     <button
       onClick={() => setShowPrioritySelect(true)}
-      className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-light"
+      className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light"
     >
       <Plus className="h-4 w-4" />
       Adicionar ao Plano
