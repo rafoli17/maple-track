@@ -79,10 +79,9 @@ export function StepResults({ data }: StepProps) {
         ))}
       </div>
 
-      <Button size="lg" className="w-full sm:w-auto">
-        Comecar Jornada
-        <ArrowRight className="ml-2 h-4 w-4" />
-      </Button>
+      <p className="text-sm text-foreground-muted">
+        Clique em &quot;Começar Jornada&quot; abaixo para ir ao seu dashboard
+      </p>
     </div>
   );
 }

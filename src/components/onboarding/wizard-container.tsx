@@ -1,11 +1,12 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Loader2 } from "lucide-react";
 import { StepPersonal } from "./step-personal";
 import { StepEducation } from "./step-education";
 import { StepExperience } from "./step-experience";
@@ -31,9 +32,11 @@ const stepTitles = [
 ];
 
 export function WizardContainer() {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = React.useState(0);
   const [data, setData] = React.useState<Record<string, unknown>>({});
   const [direction, setDirection] = React.useState(1);
+  const [isFinishing, setIsFinishing] = React.useState(false);
 
   const handleUpdate = React.useCallback(
     (stepData: Record<string, unknown>) => {
@@ -62,6 +65,16 @@ export function WizardContainer() {
     if (currentStep > 0) {
       setDirection(-1);
       setCurrentStep((s) => s - 1);
+    }
+  };
+
+  const handleFinish = async () => {
+    setIsFinishing(true);
+    try {
+      await fetch("/api/onboarding", { method: "PUT" });
+      router.push("/dashboard");
+    } catch {
+      setIsFinishing(false);
     }
   };
 
@@ -111,10 +124,24 @@ export function WizardContainer() {
           Voltar
         </Button>
 
-        {currentStep < TOTAL_STEPS - 1 && (
+        {currentStep < TOTAL_STEPS - 1 ? (
           <Button onClick={handleNext}>
-            Proximo
+            Próximo
             <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        ) : (
+          <Button onClick={handleFinish} disabled={isFinishing}>
+            {isFinishing ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Finalizando...
+              </>
+            ) : (
+              <>
+                Começar Jornada
+                <Check className="ml-2 h-4 w-4" />
+              </>
+            )}
           </Button>
         )}
       </div>
