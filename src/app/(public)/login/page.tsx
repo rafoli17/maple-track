@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { MapleLeaf } from "@/components/ui/maple-leaf";
 
 function LoginContent() {
   const searchParams = useSearchParams();
@@ -82,15 +83,7 @@ function LoginContent() {
         {/* Logo */}
         <div className="mb-8 flex flex-col items-center gap-3">
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2L9.5 7.5L4 6L6.5 11L2 13L7 14L5.5 19L10 16.5L12 22L14 16.5L18.5 19L17 14L22 13L17.5 11L20 6L14.5 7.5L12 2Z" />
-            </svg>
+            <MapleLeaf size={32} />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Maple<span className="text-primary">Track</span>

@@ -17,6 +17,7 @@ import {
   ChevronRight,
   Compass,
 } from "lucide-react";
+import { MapleLeaf } from "@/components/ui/maple-leaf";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -43,13 +44,7 @@ export function Sidebar() {
     >
       {/* Logo */}
       <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-4">
-        <svg
-          viewBox="0 0 24 24"
-          className="h-8 w-8 shrink-0 text-accent"
-          fill="currentColor"
-        >
-          <path d="M12 2C12 2 4 7 4 13c0 3 1.5 5.5 4 7l1-3c-1.5-1-2.5-2.8-2.5-5C6.5 8.5 12 4.5 12 4.5S17.5 8.5 17.5 12c0 2.2-1 4-2.5 5l1 3c2.5-1.5 4-4 4-7C20 7 12 2 12 2z" />
-        </svg>
+        <MapleLeaf size={28} className="shrink-0 text-primary" />
         {!isCollapsed && (
           <span className="text-lg font-bold text-foreground">MapleTrack</span>
         )}
