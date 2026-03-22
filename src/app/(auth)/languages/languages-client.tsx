@@ -105,7 +105,7 @@ export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
               <select
                 value={newTest.testType}
                 onChange={(e) => setNewTest({ ...newTest, testType: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               >
                 <option value="IELTS_GENERAL">IELTS General</option>
                 <option value="IELTS_ACADEMIC">IELTS Academic</option>
@@ -119,7 +119,7 @@ export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
               <select
                 value={newTest.status}
                 onChange={(e) => setNewTest({ ...newTest, status: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               >
                 <option value="PLANNED">Planejado</option>
                 <option value="SCHEDULED">Agendado</option>
@@ -130,35 +130,35 @@ export function LanguagesClient({ profiles, tests }: LanguagesClientProps) {
               <label className="mb-1 block text-sm text-foreground-muted">Speaking</label>
               <input type="number" step="0.5" min="0" max="12" value={newTest.speaking}
                 onChange={(e) => setNewTest({ ...newTest, speaking: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               />
             </div>
             <div>
               <label className="mb-1 block text-sm text-foreground-muted">Listening</label>
               <input type="number" step="0.5" min="0" max="12" value={newTest.listening}
                 onChange={(e) => setNewTest({ ...newTest, listening: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               />
             </div>
             <div>
               <label className="mb-1 block text-sm text-foreground-muted">Reading</label>
               <input type="number" step="0.5" min="0" max="12" value={newTest.reading}
                 onChange={(e) => setNewTest({ ...newTest, reading: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               />
             </div>
             <div>
               <label className="mb-1 block text-sm text-foreground-muted">Writing</label>
               <input type="number" step="0.5" min="0" max="12" value={newTest.writing}
                 onChange={(e) => setNewTest({ ...newTest, writing: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               />
             </div>
             <div>
               <label className="mb-1 block text-sm text-foreground-muted">Data do Teste</label>
               <input type="date" value={newTest.testDate}
                 onChange={(e) => setNewTest({ ...newTest, testDate: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               />
             </div>
           </div>

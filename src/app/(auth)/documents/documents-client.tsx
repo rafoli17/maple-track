@@ -124,7 +124,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
                 type="text"
                 value={newDoc.name}
                 onChange={(e) => setNewDoc({ ...newDoc, name: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 placeholder="Ex: Passaporte Principal"
               />
             </div>
@@ -133,7 +133,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
               <select
                 value={newDoc.type}
                 onChange={(e) => setNewDoc({ ...newDoc, type: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               >
                 {Object.entries(typeLabels).map(([value, label]) => (
                   <option key={value} value={value}>{label}</option>
@@ -145,7 +145,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
               <select
                 value={newDoc.status}
                 onChange={(e) => setNewDoc({ ...newDoc, status: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               >
                 {Object.entries(statusConfig).map(([value, cfg]) => (
                   <option key={value} value={value}>{cfg.label}</option>
@@ -158,7 +158,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
                 type="date"
                 value={newDoc.expiryDate}
                 onChange={(e) => setNewDoc({ ...newDoc, expiryDate: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               />
             </div>
             <div className="sm:col-span-2">
@@ -167,7 +167,7 @@ export function DocumentsClient({ groupedDocs, profiles }: DocumentsClientProps)
                 type="text"
                 value={newDoc.notes}
                 onChange={(e) => setNewDoc({ ...newDoc, notes: e.target.value })}
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 placeholder="Observacoes opcionais"
               />
             </div>

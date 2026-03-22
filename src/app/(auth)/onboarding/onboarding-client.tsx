@@ -228,7 +228,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   type="text"
                   value={formData.firstName || ""}
                   onChange={(e) => updateField("firstName", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   placeholder="Seu nome"
                 />
               </div>
@@ -240,7 +240,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   type="text"
                   value={formData.lastName || ""}
                   onChange={(e) => updateField("lastName", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   placeholder="Seu sobrenome"
                 />
               </div>
@@ -252,7 +252,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   type="date"
                   value={formData.dateOfBirth || ""}
                   onChange={(e) => updateField("dateOfBirth", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 />
               </div>
               <div>
@@ -263,7 +263,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   type="text"
                   value={formData.nationality || ""}
                   onChange={(e) => updateField("nationality", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   placeholder="Ex: Brasileira"
                 />
               </div>
@@ -275,7 +275,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   type="text"
                   value={formData.currentCountry || ""}
                   onChange={(e) => updateField("currentCountry", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   placeholder="Ex: Brasil"
                 />
               </div>
@@ -297,7 +297,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                 <select
                   value={formData.educationLevel || ""}
                   onChange={(e) => updateField("educationLevel", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 >
                   <option value="">Selecione...</option>
                   <option value="HIGH_SCHOOL">Ensino Medio</option>
@@ -318,7 +318,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   type="text"
                   value={formData.fieldOfStudy || ""}
                   onChange={(e) => updateField("fieldOfStudy", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   placeholder="Ex: Ciencia da Computacao"
                 />
               </div>
@@ -362,7 +362,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   onChange={(e) =>
                     updateField("currentOccupation", e.target.value)
                   }
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   placeholder="Ex: Engenheiro de Software"
                 />
               </div>
@@ -374,7 +374,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   type="text"
                   value={formData.nocCode || ""}
                   onChange={(e) => updateField("nocCode", e.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   placeholder="Ex: 21232"
                 />
               </div>
@@ -389,7 +389,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   onChange={(e) =>
                     updateField("yearsOfExperience", e.target.value)
                   }
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 />
               </div>
               <div>
@@ -403,7 +403,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   onChange={(e) =>
                     updateField("canadianExperienceYears", e.target.value)
                   }
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 />
               </div>
             </div>
@@ -426,7 +426,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   onChange={(e) =>
                     updateField("languageTestType", e.target.value)
                   }
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 >
                   <option value="">Ainda nao fiz teste</option>
                   <option value="IELTS_GENERAL">IELTS General</option>
@@ -453,7 +453,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                           onChange={(e) =>
                             updateField(`language_${skill}`, e.target.value)
                           }
-                          className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                          className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                         />
                       </div>
                     )
@@ -480,7 +480,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                   onChange={(e) =>
                     updateField("maritalStatus", e.target.value)
                   }
-                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 >
                   <option value="">Selecione...</option>
                   <option value="SINGLE">Solteiro(a)</option>
@@ -502,7 +502,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                     onChange={(e) =>
                       updateField("spouseEmail", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                     placeholder="email@conjuge.com"
                   />
                   <p className="mt-1 text-xs text-foreground-dim">
@@ -533,7 +533,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                 onChange={(e) =>
                   updateField("fundsAvailable", e.target.value)
                 }
-                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 placeholder="Ex: 25000"
               />
               <p className="mt-1 text-xs text-foreground-dim">
@@ -579,7 +579,7 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
                     onChange={(e) =>
                       updateField("numberOfChildren", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   />
                 </div>
               )}

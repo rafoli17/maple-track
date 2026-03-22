@@ -141,7 +141,7 @@ export default function SimulatorPage() {
                   max="45"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 />
               </div>
               <div>
@@ -149,7 +149,7 @@ export default function SimulatorPage() {
                 <select
                   value={education}
                   onChange={(e) => setEducation(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 >
                   <option value="HIGH_SCHOOL">Ensino Medio</option>
                   <option value="ONE_YEAR_DIPLOMA">Diploma 1 ano</option>
@@ -165,7 +165,7 @@ export default function SimulatorPage() {
                 <select
                   value={clb}
                   onChange={(e) => setClb(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 >
                   {[4, 5, 6, 7, 8, 9, 10].map((l) => (
                     <option key={l} value={l}>CLB {l}</option>
@@ -177,7 +177,7 @@ export default function SimulatorPage() {
                 <select
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 >
                   {[0, 1, 2, 3, 4, 5].map((y) => (
                     <option key={y} value={y}>
@@ -191,7 +191,7 @@ export default function SimulatorPage() {
                 <select
                   value={canadianExperience}
                   onChange={(e) => setCanadianExperience(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                 >
                   {[0, 1, 2, 3, 4, 5].map((y) => (
                     <option key={y} value={y}>
@@ -224,7 +224,7 @@ export default function SimulatorPage() {
                   <select
                     value={spouseEducation}
                     onChange={(e) => setSpouseEducation(e.target.value)}
-                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   >
                     <option value="HIGH_SCHOOL">Ensino Medio</option>
                     <option value="ONE_YEAR_DIPLOMA">Diploma 1 ano</option>
@@ -239,7 +239,7 @@ export default function SimulatorPage() {
                   <select
                     value={spouseClb}
                     onChange={(e) => setSpouseClb(e.target.value)}
-                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   >
                     {[4, 5, 6, 7, 8, 9, 10].map((l) => (
                       <option key={l} value={l}>CLB {l}</option>
@@ -251,7 +251,7 @@ export default function SimulatorPage() {
                   <select
                     value={spouseExperience}
                     onChange={(e) => setSpouseExperience(e.target.value)}
-                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-10 w-full rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
                   >
                     {[0, 1, 2, 3, 4, 5].map((y) => (
                       <option key={y} value={y}>

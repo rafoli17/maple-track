@@ -78,7 +78,7 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Buscar programa..."
-            className="h-10 w-full rounded-xl border border-border bg-white pl-9 pr-4 text-sm text-foreground placeholder:text-foreground-dim focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="h-10 w-full rounded-xl border border-border bg-white pl-9 pr-4 text-sm text-foreground placeholder:text-foreground-dim focus:border-primary focus:outline-none caret-primary"
           />
         </div>
         <div className="flex items-center gap-2">
@@ -86,7 +86,7 @@ export function ProgramsClient({ programs }: ProgramsClientProps) {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="h-10 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="h-10 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>

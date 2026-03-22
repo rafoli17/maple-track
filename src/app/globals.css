@@ -167,8 +167,14 @@ body {
   background: var(--foreground-dim);
 }
 
-/* Focus ring */
-*:focus-visible {
-  outline: 2px solid var(--ring);
+/* Focus ring — only for non-input elements */
+*:focus-visible:not(input):not(textarea):not(select) {
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
 }

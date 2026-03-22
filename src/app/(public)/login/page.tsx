@@ -160,7 +160,7 @@ function LoginContent() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="seu@email.com"
-                className="w-full rounded-xl border border-[#DDDDDD] bg-white px-4 py-3 text-sm text-[#222222] placeholder:text-[#B0B0B0] transition-all focus:border-[#222222] focus:outline-none focus:ring-1 focus:ring-[#222222]"
+                className="w-full rounded-xl border border-[#DDDDDD] bg-white px-4 py-3 text-sm text-[#222222] placeholder:text-[#B0B0B0] transition-all focus:border-primary focus:outline-none caret-primary"
                 required
               />
             </div>

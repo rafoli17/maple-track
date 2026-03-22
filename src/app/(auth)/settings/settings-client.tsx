@@ -142,7 +142,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="text"
               value={form.firstName}
               onChange={(e) => updateField("firstName", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -151,7 +151,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="text"
               value={form.lastName}
               onChange={(e) => updateField("lastName", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -160,7 +160,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="date"
               value={form.dateOfBirth}
               onChange={(e) => updateField("dateOfBirth", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -169,7 +169,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="text"
               value={form.nationality}
               onChange={(e) => updateField("nationality", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -178,7 +178,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="text"
               value={form.currentCountry}
               onChange={(e) => updateField("currentCountry", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -186,7 +186,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
             <select
               value={form.educationLevel}
               onChange={(e) => updateField("educationLevel", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             >
               <option value="">Selecione...</option>
               <option value="HIGH_SCHOOL">Ensino Medio</option>
@@ -205,7 +205,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="text"
               value={form.currentOccupation}
               onChange={(e) => updateField("currentOccupation", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -214,7 +214,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="text"
               value={form.nocCode}
               onChange={(e) => updateField("nocCode", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -224,7 +224,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               min="0"
               value={form.yearsOfExperience}
               onChange={(e) => updateField("yearsOfExperience", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -234,7 +234,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               min="0"
               value={form.canadianExperienceYears}
               onChange={(e) => updateField("canadianExperienceYears", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
           </div>
           <div>
@@ -242,7 +242,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
             <select
               value={form.maritalStatus}
               onChange={(e) => updateField("maritalStatus", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             >
               <option value="">Selecione...</option>
               <option value="single">Solteiro(a)</option>
@@ -258,7 +258,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
               type="text"
               value={form.fundsAvailable}
               onChange={(e) => updateField("fundsAvailable", e.target.value)}
-              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 w-full rounded-lg border border-border bg-surface px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               placeholder="Ex: 25000"
             />
           </div>

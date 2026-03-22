@@ -69,7 +69,7 @@ export function CompareClient({ programs }: CompareClientProps) {
                 e.target.value = "";
               }
             }}
-            className="h-10 w-full max-w-md rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            className="h-10 w-full max-w-md rounded-lg border border-border bg-card px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
           >
             <option value="">Selecione um programa...</option>
             {available.map((p) => (

@@ -88,7 +88,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
               type="text"
               value={householdName}
               onChange={(e) => setHouseholdName(e.target.value)}
-              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               placeholder="Nome do household"
             />
             <button
@@ -168,7 +168,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
               value={inviteEmail}
               onChange={(e) => setInviteEmail(e.target.value)}
               placeholder="email@conjuge.com"
-              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
             <button
               onClick={handleInvite}
