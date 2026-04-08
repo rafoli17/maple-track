@@ -105,14 +105,18 @@ export function LanguageStageIllustration(props: StageProps) {
         <rect x="110" y="36" width="45" height="3" rx="1.5" fill={TEAL_SOFT} />
       </g>
       {/* Speech bubble with A */}
-      <g transform="translate(30, 50)">
-        <path d="M0 18 C0 4 14 -4 26 0 C40 -4 54 4 54 18 C54 32 40 38 26 36 L18 44 L20 34 C8 32 0 28 0 18 Z" fill={ROSE} />
-        <text x="27" y="26" textAnchor="middle" fill="white" fontSize="22" fontWeight="800" fontFamily="system-ui, sans-serif">A</text>
+      <g transform="translate(28, 40)">
+        <ellipse cx="32" cy="26" rx="32" ry="24" fill={ROSE} />
+        <path d="M18 46 L24 56 L30 48 Z" fill={ROSE} />
+        <text x="32" y="34" textAnchor="middle" fill="white" fontSize="26" fontWeight="800" fontFamily="system-ui, -apple-system, sans-serif">A</text>
       </g>
-      {/* Speech bubble with 中 */}
-      <g transform="translate(190, 40)">
-        <path d="M0 18 C0 4 14 -4 26 0 C40 -4 54 4 54 18 C54 32 40 38 26 36 L34 44 L32 34 C44 32 54 28 54 18 Z" fill={TEAL} />
-        <text x="27" y="26" textAnchor="middle" fill="white" fontSize="20" fontWeight="800" fontFamily="system-ui, sans-serif">中</text>
+      {/* Speech bubble with globe */}
+      <g transform="translate(186, 32)">
+        <ellipse cx="32" cy="26" rx="32" ry="24" fill={TEAL} />
+        <path d="M34 46 L40 56 L46 48 Z" fill={TEAL} />
+        <circle cx="32" cy="26" r="13" fill="none" stroke="white" strokeWidth="2.5" />
+        <ellipse cx="32" cy="26" rx="6" ry="13" fill="none" stroke="white" strokeWidth="2.5" />
+        <line x1="19" y1="26" x2="45" y2="26" stroke="white" strokeWidth="2.5" />
       </g>
       {/* Sparkle */}
       <circle cx="240" cy="120" r="4" fill={PEACH} />
