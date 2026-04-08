@@ -177,20 +177,10 @@ export function DashboardClient({
               {stage.tagline}
             </p>
 
-            {/* Phase progress bar */}
             {currentTotal > 0 && (
-              <div className="mt-5 max-w-sm">
-                <div className="flex items-center justify-between text-xs font-medium text-foreground-muted">
-                  <span>{currentDone} de {currentTotal} etapas</span>
-                  <span className="text-primary">{currentPct}%</span>
-                </div>
-                <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface">
-                  <div
-                    className="h-full bg-primary transition-all duration-700"
-                    style={{ width: `${currentPct}%` }}
-                  />
-                </div>
-              </div>
+              <p className="mt-4 text-xs font-semibold text-foreground-muted">
+                <span className="text-primary">{currentDone}/{currentTotal}</span> etapas concluidas nesta fase
+              </p>
             )}
           </div>
 
@@ -208,8 +198,12 @@ export function DashboardClient({
             return (
               <div
                 key={m.id}
-                className={`flex h-2 flex-1 min-w-[20px] rounded-full transition-all ${
-                  isDone ? "bg-primary" : isCurrent ? "bg-primary/60" : "bg-surface"
+                className={`flex h-2.5 flex-1 min-w-[20px] rounded-full transition-all ${
+                  isDone
+                    ? "bg-primary"
+                    : isCurrent
+                    ? "bg-primary/70 ring-2 ring-primary/20"
+                    : "bg-foreground-dim/25"
                 }`}
                 title={m.name}
               />
