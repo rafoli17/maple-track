@@ -237,7 +237,7 @@ export function JourneyClient({ allPlans, macroMilestones, profiles = [] }: Jour
         </div>
         <div className="mt-4 h-2.5 rounded-full bg-border/40">
           <div
-            className="h-2.5 rounded-full bg-gradient-to-r from-primary to-accent transition-all duration-700"
+            className="h-2.5 rounded-full bg-primary transition-all duration-700"
             style={{ width: `${overallProgress}%` }}
           />
         </div>

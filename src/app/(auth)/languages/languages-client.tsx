@@ -34,8 +34,8 @@ const SKILL_LABELS: Record<string, string> = {
 // Plan-based color tiers: which plan's CLB minimum does the score meet?
 const PLAN_COLORS = {
   PRIMARY:   { bar: "bg-primary",  text: "text-primary"  },
-  SECONDARY: { bar: "bg-accent",   text: "text-accent"   },
-  TERTIARY:  { bar: "bg-warning",  text: "text-warning"  },
+  SECONDARY: { bar: "bg-primary",  text: "text-primary"  },
+  TERTIARY:  { bar: "bg-primary",  text: "text-primary"  },
   NONE:      { bar: "bg-border",   text: "text-foreground-dim" },
 };
 
