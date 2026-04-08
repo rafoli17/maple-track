@@ -21,6 +21,10 @@ const documentUpdateSchema = z.object({
   notes: z.string().optional(),
   fileUrl: z.string().optional(),
   name: z.string().optional(),
+  originalLanguage: z.string().optional(),
+  translationRequired: z.boolean().optional(),
+  translationCompleted: z.boolean().optional(),
+  usedInApplication: z.boolean().optional(),
 });
 
 type RouteContext = { params: Promise<{ documentId: string }> };
@@ -52,7 +56,18 @@ export async function PUT(
       where: eq(documents.id, documentId),
     });
 
-    if (!doc || doc.profileId !== profile.id) {
+    if (!doc) {
+      return NextResponse.json(
+        { error: "Document not found" },
+        { status: 404 }
+      );
+    }
+
+    // Verify document belongs to same household
+    const docProfile = await db.query.profiles.findFirst({
+      where: eq(profiles.id, doc.profileId),
+    });
+    if (!docProfile || docProfile.householdId !== profile.householdId) {
       return NextResponse.json(
         { error: "Document not found" },
         { status: 404 }
@@ -80,6 +95,10 @@ export async function PUT(
     if (data.notes !== undefined) updateData.notes = data.notes;
     if (data.fileUrl !== undefined) updateData.fileUrl = data.fileUrl;
     if (data.name !== undefined) updateData.name = data.name;
+    if (data.originalLanguage !== undefined) updateData.originalLanguage = data.originalLanguage;
+    if (data.translationRequired !== undefined) updateData.translationRequired = data.translationRequired;
+    if (data.translationCompleted !== undefined) updateData.translationCompleted = data.translationCompleted;
+    if (data.usedInApplication !== undefined) updateData.usedInApplication = data.usedInApplication;
 
     const [updated] = await db
       .update(documents)
@@ -124,7 +143,18 @@ export async function DELETE(
       where: eq(documents.id, documentId),
     });
 
-    if (!doc || doc.profileId !== profile.id) {
+    if (!doc) {
+      return NextResponse.json(
+        { error: "Document not found" },
+        { status: 404 }
+      );
+    }
+
+    // Verify same household
+    const docProfile = await db.query.profiles.findFirst({
+      where: eq(profiles.id, doc.profileId),
+    });
+    if (!docProfile || docProfile.householdId !== profile.householdId) {
       return NextResponse.json(
         { error: "Document not found" },
         { status: 404 }

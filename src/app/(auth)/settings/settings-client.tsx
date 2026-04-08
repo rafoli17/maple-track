@@ -101,7 +101,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
       </div>
 
       {/* Account info (read-only) */}
-      <div className="rounded-2xl bg-white p-6 shadow-sm space-y-4">
+      <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm space-y-4">
         <h2 className="text-base font-bold text-foreground flex items-center gap-2">
           <User className="h-5 w-5 text-primary" />
           Conta
@@ -129,7 +129,7 @@ export function SettingsClient({ user, profile }: SettingsClientProps) {
       </div>
 
       {/* Profile edit form */}
-      <div className="rounded-2xl bg-white p-6 shadow-sm space-y-4">
+      <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm space-y-4">
         <h2 className="text-base font-bold text-foreground flex items-center gap-2">
           <Settings className="h-5 w-5 text-primary" />
           Perfil de Imigracao

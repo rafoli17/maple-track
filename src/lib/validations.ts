@@ -95,6 +95,7 @@ export const languageTestCreateSchema = z.object({
   writing: z.number().min(0).max(12).optional(),
   testDate: z.string().optional(),
   status: z.enum(["PLANNED", "SCHEDULED", "COMPLETED", "EXPIRED"]).default("PLANNED"),
+  profileId: z.string().uuid().optional(),
 });
 
 export const planCreateSchema = z.object({
@@ -116,6 +117,10 @@ export const documentCreateSchema = z.object({
   expiryDate: z.string().optional(),
   notes: z.string().optional(),
   immigrationPlanId: z.string().uuid().optional(),
+  profileId: z.string().uuid().optional(),
+  originalLanguage: z.string().optional(),
+  translationRequired: z.boolean().optional(),
+  translationCompleted: z.boolean().optional(),
 });
 
 export const stepUpdateSchema = z.object({

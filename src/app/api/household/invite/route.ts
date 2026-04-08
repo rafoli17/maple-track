@@ -5,6 +5,7 @@ import { households, profiles } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { sendHouseholdInvite } from "@/lib/email";
 import { z } from "zod/v4";
+import { resolveHouseholdId } from "@/lib/resolve-household";
 
 const inviteSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -17,7 +18,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
@@ -37,7 +39,7 @@ export async function POST(request: Request) {
     const { email } = parsed.data;
 
     const household = await db.query.households.findFirst({
-      where: eq(households.id, session.user.householdId),
+      where: eq(households.id, householdId),
     });
 
     if (!household) {

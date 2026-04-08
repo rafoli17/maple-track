@@ -1,47 +1,79 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/db";
-import { eq } from "drizzle-orm";
-import { documents, profiles } from "@/db/schema";
+import { eq, inArray } from "drizzle-orm";
+import { documents, profiles, immigrationPlans } from "@/db/schema";
 import { DocumentsClient } from "./documents-client";
+import { resolveHouseholdId } from "@/lib/resolve-household";
+import {
+  generateDocumentAlerts,
+  computeCategoryReadiness,
+  findMissingDocs,
+} from "@/lib/document-categories";
 
 export default async function DocumentsPage() {
   const session = await auth();
   if (!session?.user) redirect("/login");
 
-  const householdId = session.user.householdId;
-  let docs: any[] = [];
+  const householdId = await resolveHouseholdId(session.user);
+  if (!householdId) redirect("/onboarding");
+
+  let allDocs: any[] = [];
   let householdProfiles: any[] = [];
+  let allPlans: any[] = [];
 
-  if (householdId) {
-    try {
-      const [docsResult, profilesResult] = await Promise.all([
-        db.query.documents.findMany({
-          with: { profile: true },
-        }),
-        db.query.profiles.findMany({
-          where: eq(profiles.householdId, householdId),
-        }),
-      ]);
-      docs = docsResult || [];
-      householdProfiles = profilesResult || [];
-    } catch {
-      // DB error
+  try {
+    const [profilesResult, plansResult] = await Promise.all([
+      db.query.profiles.findMany({
+        where: eq(profiles.householdId, householdId),
+        with: { user: true },
+      }),
+      db.query.immigrationPlans.findMany({
+        where: eq(immigrationPlans.householdId, householdId),
+        with: { program: true },
+      }),
+    ]);
+
+    householdProfiles = profilesResult || [];
+    allPlans = plansResult || [];
+
+    const profileIds = householdProfiles.map((p: any) => p.id);
+    if (profileIds.length > 0) {
+      allDocs = await db.query.documents.findMany({
+        where: inArray(documents.profileId, profileIds),
+      });
     }
+  } catch {
+    // DB error
   }
 
-  // Group documents by profile
-  const grouped: Record<string, any[]> = {};
-  for (const doc of docs) {
-    const profileId = doc.profileId || "unassigned";
-    if (!grouped[profileId]) grouped[profileId] = [];
-    grouped[profileId].push(doc);
-  }
+  // Compute alerts
+  const alerts = generateDocumentAlerts(allDocs);
+
+  // Compute category readiness
+  const categoryReadiness = computeCategoryReadiness(allDocs);
+
+  // Find missing recommended docs
+  const missingDocs = findMissingDocs(allDocs, householdProfiles.length);
+
+  // Overall readiness
+  const totalDocs = allDocs.length;
+  const readyDocs = allDocs.filter(
+    (d) => d.status === "SUBMITTED" || d.status === "APPROVED"
+  ).length;
+  const overallReadiness = totalDocs > 0 ? Math.round((readyDocs / totalDocs) * 100) : 0;
 
   return (
     <DocumentsClient
-      groupedDocs={grouped}
+      allDocs={allDocs}
       profiles={householdProfiles}
+      plans={allPlans}
+      alerts={alerts}
+      categoryReadiness={categoryReadiness}
+      missingDocs={missingDocs}
+      overallReadiness={overallReadiness}
+      totalDocs={totalDocs}
+      readyDocs={readyDocs}
     />
   );
 }

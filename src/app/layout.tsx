@@ -15,6 +15,15 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   title: {
     default: "MapleTrack — Seu GPS para imigrar para o Canadá",
@@ -37,7 +46,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${inter.variable} ${jetbrainsMono.variable} dark`}
     >
-      <body className="min-h-screen bg-background text-foreground antialiased">
+      <body className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
         <Providers>{children}</Providers>
       </body>
     </html>

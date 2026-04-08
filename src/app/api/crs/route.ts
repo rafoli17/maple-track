@@ -3,7 +3,8 @@ import { auth } from "@/lib/auth";
 import { db } from "@/db";
 import { crsScores, profiles } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
-import { calculateCRS } from "@/lib/crs-calculator";
+import { resolveHouseholdId } from "@/lib/resolve-household";
+import { checkCRSAchievements } from "@/lib/achievements";
 
 export async function GET() {
   try {
@@ -39,7 +40,7 @@ export async function GET() {
   }
 }
 
-export async function POST() {
+export async function POST(request: Request) {
   try {
     const session = await auth();
     if (!session?.user) {
@@ -48,9 +49,6 @@ export async function POST() {
 
     const profile = await db.query.profiles.findFirst({
       where: eq(profiles.userId, session.user.id),
-      with: {
-        languageTests: true,
-      },
     });
 
     if (!profile) {
@@ -60,61 +58,37 @@ export async function POST() {
       );
     }
 
-    const completedTest = profile.languageTests.find(
-      (t) => t.status === "COMPLETED"
-    );
+    // Accept pre-calculated scores from the simulator client
+    const body = await request.json().catch(() => null);
 
-    const age = profile.dateOfBirth
-      ? Math.floor(
-          (Date.now() - new Date(profile.dateOfBirth).getTime()) /
-            (365.25 * 24 * 60 * 60 * 1000)
-        )
-      : 30;
-
-    const firstLanguage = completedTest
-      ? {
-          speaking: Number(completedTest.speaking) || 0,
-          listening: Number(completedTest.listening) || 0,
-          reading: Number(completedTest.reading) || 0,
-          writing: Number(completedTest.writing) || 0,
-        }
-      : { speaking: 0, listening: 0, reading: 0, writing: 0 };
-
-    const maritalStatus =
-      profile.maritalStatus === "married" ||
-      profile.maritalStatus === "common_law"
-        ? ("married_or_common_law" as const)
-        : ("single" as const);
-
-    const crsResult = calculateCRS({
-      age,
-      educationLevel: profile.educationLevel || "HIGH_SCHOOL",
-      firstLanguage,
-      canadianExperienceYears: profile.canadianExperienceYears || 0,
-      foreignExperienceYears: profile.yearsOfExperience || 0,
-      maritalStatus,
-      canadianEducation: profile.canadianEducation || false,
-    });
-
-    const breakdown: Record<string, number> = {};
-    for (const [key, value] of Object.entries(crsResult)) {
-      if (typeof value === "number") {
-        breakdown[key] = value;
-      }
+    if (!body || typeof body.totalScore !== "number") {
+      return NextResponse.json(
+        { error: "Missing score data. Send totalScore, coreScore, etc." },
+        { status: 400 }
+      );
     }
 
     const [score] = await db
       .insert(crsScores)
       .values({
         profileId: profile.id,
-        totalScore: crsResult.total,
-        coreScore: crsResult.subtotalCoreHumanCapital,
-        spouseScore: crsResult.subtotalSpouse,
-        skillTransferScore: crsResult.subtotalSkillTransfer,
-        additionalScore: crsResult.subtotalAdditional,
-        breakdown,
+        totalScore: body.totalScore,
+        coreScore: body.coreScore ?? 0,
+        spouseScore: body.spouseScore ?? 0,
+        skillTransferScore: body.skillTransferScore ?? 0,
+        additionalScore: body.additionalScore ?? 0,
+        breakdown: body.breakdown ?? {},
       })
       .returning();
+
+    // Check CRS achievements
+    if (profile.householdId) {
+      try {
+        await checkCRSAchievements(profile.householdId, body.totalScore);
+      } catch (e) {
+        console.error("[CRS_ACHIEVEMENT]", e);
+      }
+    }
 
     return NextResponse.json(score, { status: 201 });
   } catch (error) {

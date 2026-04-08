@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { db } from "@/db";
 import { journeyPhases, immigrationPlans } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { resolveHouseholdId } from "@/lib/resolve-household";
 
 export async function GET(request: Request) {
   try {
@@ -11,7 +12,8 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
@@ -32,7 +34,7 @@ export async function GET(request: Request) {
       where: eq(immigrationPlans.id, planId),
     });
 
-    if (!plan || plan.householdId !== session.user.householdId) {
+    if (!plan || plan.householdId !== householdId) {
       return NextResponse.json({ error: "Plan not found" }, { status: 404 });
     }
 

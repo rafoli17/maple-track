@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/db";
-import { immigrationPlans } from "@/db/schema";
+import {
+  immigrationPlans,
+  immigrationPrograms,
+  journeyPhases,
+  journeySteps,
+} from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { planCreateSchema } from "@/lib/validations";
 import { z } from "zod/v4";
+import { getJourneyTemplate } from "@/lib/journey-templates";
+import { resolveHouseholdId } from "@/lib/resolve-household";
 
 const planUpdateSchema = z.object({
   planId: z.string().uuid(),
@@ -30,7 +37,8 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
@@ -38,7 +46,7 @@ export async function GET() {
     }
 
     const plans = await db.query.immigrationPlans.findMany({
-      where: eq(immigrationPlans.householdId, session.user.householdId),
+      where: eq(immigrationPlans.householdId, householdId),
       with: {
         program: true,
         phases: {
@@ -68,7 +76,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
@@ -87,16 +96,67 @@ export async function POST(request: Request) {
 
     const { programId, priority, notes } = parsed.data;
 
+    // Fetch the program to get its code for template lookup
+    const program = await db.query.immigrationPrograms.findFirst({
+      where: eq(immigrationPrograms.id, programId),
+    });
+
+    if (!program) {
+      return NextResponse.json(
+        { error: "Program not found" },
+        { status: 404 }
+      );
+    }
+
     const [plan] = await db
       .insert(immigrationPlans)
       .values({
-        householdId: session.user.householdId,
+        householdId,
         programId,
         priority,
         notes,
         startedAt: new Date(),
       })
       .returning();
+
+    // Auto-generate journey phases and steps from template
+    const template = getJourneyTemplate(program.code);
+
+    for (let phaseIndex = 0; phaseIndex < template.length; phaseIndex++) {
+      const phaseTemplate = template[phaseIndex];
+
+      const [phase] = await db
+        .insert(journeyPhases)
+        .values({
+          immigrationPlanId: plan.id,
+          phaseNumber: phaseIndex + 1,
+          name: phaseTemplate.name,
+          description: phaseTemplate.description,
+          estimatedDurationDays: phaseTemplate.estimatedDurationDays,
+          order: phaseIndex,
+          macroMilestoneId: phaseTemplate.macroMilestoneId,
+        })
+        .returning();
+
+      // Create steps for this phase
+      for (
+        let stepIndex = 0;
+        stepIndex < phaseTemplate.steps.length;
+        stepIndex++
+      ) {
+        const stepTemplate = phaseTemplate.steps[stepIndex];
+        await db.insert(journeySteps).values({
+          journeyPhaseId: phase.id,
+          immigrationPlanId: plan.id,
+          title: stepTemplate.title,
+          description: stepTemplate.description,
+          instructions: stepTemplate.instructions || null,
+          priority: stepTemplate.priority,
+          order: stepIndex,
+          actionUrl: stepTemplate.actionUrl || null,
+        });
+      }
+    }
 
     return NextResponse.json(plan, { status: 201 });
   } catch (error) {
@@ -115,7 +175,8 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
@@ -138,7 +199,7 @@ export async function PUT(request: Request) {
       where: eq(immigrationPlans.id, planId),
     });
 
-    if (!existingPlan || existingPlan.householdId !== session.user.householdId) {
+    if (!existingPlan || existingPlan.householdId !== householdId) {
       return NextResponse.json({ error: "Plan not found" }, { status: 404 });
     }
 

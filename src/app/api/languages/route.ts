@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { languageTests, profiles } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { languageTestCreateSchema } from "@/lib/validations";
+import { resolveHouseholdId } from "@/lib/resolve-household";
 
 export async function GET() {
   try {
@@ -45,15 +46,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const profile = await db.query.profiles.findFirst({
-      where: eq(profiles.userId, session.user.id),
-    });
-
-    if (!profile) {
-      return NextResponse.json(
-        { error: "Profile not found" },
-        { status: 404 }
-      );
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
+      return NextResponse.json({ error: "No household" }, { status: 404 });
     }
 
     const body = await request.json();
@@ -68,10 +63,39 @@ export async function POST(request: Request) {
 
     const data = parsed.data;
 
+    // Determine which profile to use
+    let targetProfileId: string;
+
+    if (data.profileId) {
+      // Verify the target profile belongs to the same household
+      const targetProfile = await db.query.profiles.findFirst({
+        where: eq(profiles.id, data.profileId),
+      });
+      if (!targetProfile || targetProfile.householdId !== householdId) {
+        return NextResponse.json(
+          { error: "Profile not in household" },
+          { status: 403 }
+        );
+      }
+      targetProfileId = data.profileId;
+    } else {
+      // Default to the logged-in user's profile
+      const profile = await db.query.profiles.findFirst({
+        where: eq(profiles.userId, session.user.id),
+      });
+      if (!profile) {
+        return NextResponse.json(
+          { error: "Profile not found" },
+          { status: 404 }
+        );
+      }
+      targetProfileId = profile.id;
+    }
+
     const [test] = await db
       .insert(languageTests)
       .values({
-        profileId: profile.id,
+        profileId: targetProfileId,
         testType: data.testType,
         speaking: data.speaking?.toString(),
         listening: data.listening?.toString(),

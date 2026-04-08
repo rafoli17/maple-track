@@ -334,6 +334,7 @@ export const journeyPhases = pgTable("journey_phases", {
   startedAt: timestamp("started_at", { withTimezone: true }),
   completedAt: timestamp("completed_at", { withTimezone: true }),
   order: integer("order").notNull(),
+  macroMilestoneId: text("macro_milestone_id"),
 });
 
 export const journeySteps = pgTable("journey_steps", {
@@ -354,6 +355,7 @@ export const journeySteps = pgTable("journey_steps", {
   priority: stepPriorityEnum("priority").default("MEDIUM").notNull(),
   order: integer("order").notNull(),
   parentStepId: uuid("parent_step_id"),
+  actionUrl: text("action_url"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),
@@ -374,6 +376,10 @@ export const documents = pgTable("documents", {
   expiryDate: timestamp("expiry_date", { withTimezone: true }),
   fileUrl: text("file_url"),
   notes: text("notes"),
+  originalLanguage: text("original_language"),
+  translationRequired: boolean("translation_required").default(false).notNull(),
+  translationCompleted: boolean("translation_completed").default(false).notNull(),
+  usedInApplication: boolean("used_in_application").default(false).notNull(),
   requiredForPrograms: json("required_for_programs").$type<string[]>(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()

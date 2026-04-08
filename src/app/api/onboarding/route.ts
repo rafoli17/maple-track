@@ -14,6 +14,7 @@ import {
   stepPreferencesSchema,
 } from "@/lib/validations";
 import { sendHouseholdInvite } from "@/lib/email";
+import { ensureDefaultPlans } from "@/lib/auto-create-plans";
 
 export async function POST(request: Request) {
   try {
@@ -233,13 +234,67 @@ export async function PUT() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = session.user.id;
+
+    // Ensure household exists (may be null if signIn callback failed silently)
+    const existingUser = await db.query.users.findFirst({
+      where: eq(users.id, userId),
+    });
+
+    let householdId = existingUser?.householdId;
+
+    if (!householdId) {
+      // Create household
+      const [household] = await db
+        .insert(households)
+        .values({
+          name: session.user.name
+            ? `Família ${session.user.name.split(" ").pop()}`
+            : "Minha Família",
+        })
+        .returning();
+
+      householdId = household.id;
+
+      // Update user with householdId
+      await db
+        .update(users)
+        .set({ householdId: household.id })
+        .where(eq(users.id, userId));
+
+      // Ensure profile exists and has householdId
+      const existingProfile = await db.query.profiles.findFirst({
+        where: eq(profiles.userId, userId),
+      });
+
+      if (existingProfile && !existingProfile.householdId) {
+        await db
+          .update(profiles)
+          .set({ householdId: household.id })
+          .where(eq(profiles.id, existingProfile.id));
+      } else if (!existingProfile) {
+        const nameParts = (session.user.name || "").split(" ");
+        await db.insert(profiles).values({
+          userId,
+          householdId: household.id,
+          firstName: nameParts[0] || "",
+          lastName: nameParts.slice(1).join(" ") || "",
+          isPrimaryApplicant: true,
+        });
+      }
+    }
+
+    // Mark onboarding as completed
     await db
       .update(users)
       .set({
         onboardingCompleted: true,
         updatedAt: new Date(),
       })
-      .where(eq(users.id, session.user.id));
+      .where(eq(users.id, userId));
+
+    // Auto-create the 3 default plans if none exist yet
+    await ensureDefaultPlans(householdId);
 
     return NextResponse.json({ success: true, onboardingCompleted: true });
   } catch (error) {

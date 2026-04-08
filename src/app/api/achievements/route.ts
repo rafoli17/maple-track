@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { db } from "@/db";
-import { achievements } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { resolveHouseholdId } from "@/lib/resolve-household";
+import { syncAllAchievements } from "@/lib/achievements";
 
+// GET: Sync all achievements and return full state
 export async function GET() {
   try {
     const session = await auth();
@@ -11,21 +11,19 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
       );
     }
 
-    const householdAchievements = await db
-      .select()
-      .from(achievements)
-      .where(eq(achievements.householdId, session.user.householdId));
+    const result = await syncAllAchievements(householdId);
 
-    return NextResponse.json(householdAchievements);
+    return NextResponse.json(result);
   } catch (error) {
-    console.error("[ACHIEVEMENTS_GET]", error);
+    console.error("[ACHIEVEMENTS_SYNC]", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }

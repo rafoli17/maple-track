@@ -21,12 +21,11 @@ import { MapleLeaf } from "@/components/ui/maple-leaf";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/programs", label: "Programas", icon: Compass },
-  { href: "/plans", label: "Meus Planos", icon: Map },
   { href: "/journey", label: "Jornada", icon: Route },
-  { href: "/documents", label: "Documentos", icon: FileText },
   { href: "/languages", label: "Idiomas", icon: Languages },
+  { href: "/documents", label: "Documentos", icon: FileText },
   { href: "/simulator", label: "Simulador CRS", icon: Calculator },
+  { href: "/plans", label: "Meus Planos", icon: Map },
   { href: "/achievements", label: "Conquistas", icon: Trophy },
   { href: "/settings", label: "Configuracoes", icon: Settings },
 ];

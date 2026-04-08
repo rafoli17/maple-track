@@ -147,8 +147,8 @@ export function OnboardingClient({ userName }: OnboardingClientProps) {
       }
       // Force JWT refresh so session.user.onboardingCompleted = true
       await updateSession();
-      router.push("/dashboard");
-      router.refresh();
+      // Use full page navigation to ensure server re-reads the updated JWT cookie
+      window.location.href = "/dashboard";
     } catch {
       setIsSubmitting(false);
     }

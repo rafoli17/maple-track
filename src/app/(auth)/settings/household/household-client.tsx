@@ -78,23 +78,23 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
 
       {/* Household name */}
       {household && (
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
+        <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm">
           <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
             <Users className="h-5 w-5 text-foreground-muted" />
             Dados do Household
           </h2>
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3 flex-col sm:flex-row">
             <input
               type="text"
               value={householdName}
               onChange={(e) => setHouseholdName(e.target.value)}
-              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
+              className="h-10 flex-1 min-w-0 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
               placeholder="Nome do household"
             />
             <button
               onClick={handleSaveName}
               disabled={isSaving}
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50 shrink-0"
             >
               <Save className="h-4 w-4" />
               {isSaving ? "Salvando..." : "Salvar"}
@@ -104,7 +104,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
       )}
 
       {/* Members list */}
-      <div className="rounded-2xl bg-white p-6 shadow-sm">
+      <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm">
         <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
           <Users className="h-5 w-5 text-foreground-muted" />
           Membros ({members.length})
@@ -145,7 +145,7 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
       </div>
 
       {/* Invite spouse */}
-      <div className="rounded-2xl bg-white p-6 shadow-sm">
+      <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm">
         <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
           <UserPlus className="h-5 w-5 text-foreground-muted" />
           Convidar Conjuge
@@ -162,18 +162,18 @@ export function HouseholdClient({ household, members }: HouseholdClientProps) {
             </p>
           </div>
         ) : (
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3 flex-col sm:flex-row">
             <input
               type="email"
               value={inviteEmail}
               onChange={(e) => setInviteEmail(e.target.value)}
               placeholder="email@conjuge.com"
-              className="h-10 flex-1 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
+              className="h-10 flex-1 min-w-0 rounded-xl border border-border bg-white px-3 text-sm text-foreground focus:border-primary focus:outline-none caret-primary"
             />
             <button
               onClick={handleInvite}
               disabled={isSending || !inviteEmail}
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:shadow-md hover:bg-primary-light disabled:opacity-50 shrink-0"
             >
               <Mail className="h-4 w-4" />
               {isSending ? "Enviando..." : "Enviar Convite"}

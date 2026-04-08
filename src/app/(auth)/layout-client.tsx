@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { MobileNav } from "@/components/layout/mobile-nav";
@@ -15,24 +16,32 @@ interface AuthLayoutClientProps {
 }
 
 export function AuthLayoutClient({ user, children }: AuthLayoutClientProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
   return (
-    <div className="flex h-screen overflow-hidden bg-[#F7F7F7]">
+    <div className="flex h-screen w-screen overflow-hidden bg-[#F7F7F7]">
       {/* Sidebar - hidden on mobile */}
       <Sidebar />
 
       {/* Main content area */}
-      <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         {/* Header */}
-        <Header user={user} />
+        <Header
+          user={user}
+          onMenuToggle={() => setMobileMenuOpen(true)}
+        />
 
         {/* Page content */}
-        <main className="flex-1 overflow-y-auto p-4 pb-20 md:p-6 md:pb-6">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:p-6">
           {children}
         </main>
-
-        {/* Mobile bottom navigation */}
-        <MobileNav />
       </div>
+
+      {/* Mobile slide-out navigation */}
+      <MobileNav
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+      />
     </div>
   );
 }

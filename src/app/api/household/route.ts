@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { households } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { z } from "zod/v4";
+import { resolveHouseholdId } from "@/lib/resolve-household";
 
 const householdUpdateSchema = z.object({
   name: z.string().min(1, "Nome é obrigatório"),
@@ -16,7 +17,8 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
@@ -36,7 +38,7 @@ export async function PUT(request: Request) {
     const [updated] = await db
       .update(households)
       .set({ name: parsed.data.name })
-      .where(eq(households.id, session.user.householdId))
+      .where(eq(households.id, householdId))
       .returning();
 
     return NextResponse.json(updated);
@@ -56,7 +58,8 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    if (!session.user.householdId) {
+    const householdId = await resolveHouseholdId(session.user);
+    if (!householdId) {
       return NextResponse.json(
         { error: "No household found" },
         { status: 404 }
@@ -64,7 +67,7 @@ export async function GET() {
     }
 
     const household = await db.query.households.findFirst({
-      where: eq(households.id, session.user.householdId),
+      where: eq(households.id, householdId),
       with: {
         users: true,
         profiles: true,

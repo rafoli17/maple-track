@@ -12,6 +12,7 @@ import {
   SkipForward,
   User,
   Calendar,
+  ExternalLink,
 } from "lucide-react";
 
 interface PhaseDetailClientProps {
@@ -177,6 +178,15 @@ export function PhaseDetailClient({ phase, steps }: PhaseDetailClientProps) {
                             <Calendar className="h-3 w-3" />
                             {new Date(step.dueDate).toLocaleDateString("pt-BR")}
                           </span>
+                        )}
+                        {step.actionUrl && !isDone && (
+                          <Link
+                            href={step.actionUrl}
+                            className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-[10px] font-medium text-primary hover:bg-primary/20 transition-colors"
+                          >
+                            <ExternalLink className="h-3 w-3" />
+                            Ir para secao
+                          </Link>
                         )}
                       </div>
                     </div>
