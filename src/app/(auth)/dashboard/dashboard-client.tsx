@@ -23,13 +23,16 @@ import {
   Bell,
 } from "lucide-react";
 import {
-  HeroIllustration,
-  JourneyIllustration,
-  DocumentsIllustration,
-  CelebrationIllustration,
-  FamilyIllustration,
-  AirplaneIllustration,
-} from "@/components/illustrations";
+  ResearchStageIllustration,
+  LanguageStageIllustration,
+  EcaStageIllustration,
+  SubmissionStageIllustration,
+  ApprovalStageIllustration,
+  VisaStageIllustration,
+  LandingStageIllustration,
+  PrStageIllustration,
+  CitizenshipStageIllustration,
+} from "@/components/illustrations/stages";
 import type { MacroMilestoneWithStatus, MacroMilestoneId } from "@/lib/macro-journey";
 import { getCurrentMilestoneIndex } from "@/lib/macro-journey";
 
@@ -65,15 +68,15 @@ const STAGE_CONFIG: Record<
   MacroMilestoneId,
   { Illustration: React.FC<{ className?: string; width?: number }>; tagline: string; Icon: any }
 > = {
-  research: { Illustration: HeroIllustration, tagline: "Hora de pesquisar e mapear seu caminho", Icon: Search },
-  language_tests: { Illustration: JourneyIllustration, tagline: "Foque no idioma — sua maior alavanca de score", Icon: Languages },
-  eca: { Illustration: DocumentsIllustration, tagline: "Reúna diplomas e envie para avaliação", Icon: GraduationCap },
-  submission: { Illustration: DocumentsIllustration, tagline: "Hora de submeter — voce esta quase la", Icon: Send },
-  approval: { Illustration: CelebrationIllustration, tagline: "Aguarde o convite — continue afiando seu CRS", Icon: PartyPopper },
-  visa: { Illustration: DocumentsIllustration, tagline: "Documentos finais e exames medicos", Icon: Stamp },
-  landing: { Illustration: AirplaneIllustration, tagline: "Prepare a mala — o Canada espera por voce", Icon: Plane },
-  pr: { Illustration: FamilyIllustration, tagline: "Estabeleca-se com calma e estrategia", Icon: Home },
-  citizenship: { Illustration: CelebrationIllustration, tagline: "O ultimo passo: cidadao canadense", Icon: Flag },
+  research: { Illustration: ResearchStageIllustration, tagline: "Hora de pesquisar e mapear seu caminho", Icon: Search },
+  language_tests: { Illustration: LanguageStageIllustration, tagline: "Foque no idioma — sua maior alavanca de score", Icon: Languages },
+  eca: { Illustration: EcaStageIllustration, tagline: "Reúna diplomas e envie para avaliação", Icon: GraduationCap },
+  submission: { Illustration: SubmissionStageIllustration, tagline: "Hora de submeter — voce esta quase la", Icon: Send },
+  approval: { Illustration: ApprovalStageIllustration, tagline: "Aguarde o convite — continue afiando seu CRS", Icon: PartyPopper },
+  visa: { Illustration: VisaStageIllustration, tagline: "Documentos finais e exames medicos", Icon: Stamp },
+  landing: { Illustration: LandingStageIllustration, tagline: "Prepare a mala — o Canada espera por voce", Icon: Plane },
+  pr: { Illustration: PrStageIllustration, tagline: "Estabeleca-se com calma e estrategia", Icon: Home },
+  citizenship: { Illustration: CitizenshipStageIllustration, tagline: "O ultimo passo: cidadao canadense", Icon: Flag },
 };
 
 export function DashboardClient({
