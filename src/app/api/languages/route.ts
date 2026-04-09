@@ -5,6 +5,7 @@ import { languageTests, profiles } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { languageTestCreateSchema } from "@/lib/validations";
 import { resolveHouseholdId } from "@/lib/resolve-household";
+import { autoCompleteLanguageSteps } from "@/lib/auto-complete-steps";
 
 export async function GET() {
   try {
@@ -105,6 +106,13 @@ export async function POST(request: Request) {
         status: data.status,
       })
       .returning();
+
+    // Auto-complete matching journey steps if scores are present
+    try {
+      await autoCompleteLanguageSteps(householdId, targetProfileId);
+    } catch (e) {
+      console.error("[LANGUAGES_POST] auto-complete failed", e);
+    }
 
     return NextResponse.json(test, { status: 201 });
   } catch (error) {

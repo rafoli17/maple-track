@@ -5,6 +5,7 @@ import { languageTests, profiles } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { z } from "zod/v4";
 import { resolveHouseholdId } from "@/lib/resolve-household";
+import { autoCompleteLanguageSteps } from "@/lib/auto-complete-steps";
 
 const languageTestUpdateSchema = z.object({
   speaking: z.number().min(0).max(12).optional(),
@@ -94,6 +95,16 @@ export async function PUT(request: Request, ctx: RouteContext) {
       .set(updateData)
       .where(eq(languageTests.id, testId))
       .returning();
+
+    // Auto-complete language journey steps if scores now present
+    try {
+      const householdId = await resolveHouseholdId({ id: session.user.id });
+      if (householdId && updated) {
+        await autoCompleteLanguageSteps(householdId, updated.profileId);
+      }
+    } catch (e) {
+      console.error("[LANGUAGE_TEST_PUT] auto-complete failed", e);
+    }
 
     return NextResponse.json(updated);
   } catch (error) {

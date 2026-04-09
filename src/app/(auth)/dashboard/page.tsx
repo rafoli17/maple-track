@@ -16,6 +16,7 @@ import {
 import { DashboardClient } from "./dashboard-client";
 import { computeMacroProgress, getCurrentMilestoneIndex } from "@/lib/macro-journey";
 import { ensureDefaultPlans } from "@/lib/auto-create-plans";
+import { autoCompleteLanguageSteps } from "@/lib/auto-complete-steps";
 import { generateDocumentAlerts, findMissingDocs } from "@/lib/document-categories";
 
 export default async function DashboardPage() {
@@ -91,6 +92,18 @@ export default async function DashboardPage() {
   }
 
   const allPlanIds = allPlans.map((p: any) => p.id);
+
+  // Retroactively sync language journey steps for all profiles in this household
+  try {
+    const householdProfiles = await db.query.profiles.findMany({
+      where: eq(profiles.householdId, householdId),
+    });
+    for (const p of householdProfiles) {
+      await autoCompleteLanguageSteps(householdId, p.id);
+    }
+  } catch (e) {
+    console.error("[DASHBOARD] language auto-complete failed", e);
+  }
 
   // Fetch data in parallel
   let userProfiles: any[] = [];
