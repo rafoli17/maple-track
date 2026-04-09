@@ -82,45 +82,84 @@ export function ResearchStageIllustration(props: StageProps) {
   );
 }
 
-// 2. Idiomas — livro aberto + balão de fala + nota musical
+// 2. Idiomas — personagem estudando com headphones, laptop e elementos de viagem
 export function LanguageStageIllustration(props: StageProps) {
   return (
     <Wrap {...props}>
-      <ellipse cx="140" cy="205" rx="100" ry="10" fill={NAVY} opacity="0.08" />
-      {/* Book base shadow */}
-      <ellipse cx="140" cy="180" rx="85" ry="12" fill={NAVY} opacity="0.06" />
-      {/* Book — open */}
-      <g transform="translate(45, 110)">
-        <path d="M0 60 Q45 45 95 60 L95 10 Q45 -5 0 10 Z" fill={ROSE} />
-        <path d="M95 60 Q145 45 190 60 L190 10 Q145 -5 95 10 Z" fill={ROSE_DARK} />
-        {/* Pages */}
-        <path d="M8 55 Q45 42 90 55 L90 14 Q45 1 8 14 Z" fill="white" />
-        <path d="M100 55 Q140 42 182 55 L182 14 Q140 1 100 14 Z" fill="white" />
-        {/* Lines */}
-        <rect x="20" y="20" width="55" height="3" rx="1.5" fill={TEAL_SOFT} />
-        <rect x="20" y="28" width="50" height="3" rx="1.5" fill={TEAL_SOFT} />
-        <rect x="20" y="36" width="45" height="3" rx="1.5" fill={TEAL_SOFT} />
-        <rect x="110" y="20" width="55" height="3" rx="1.5" fill={TEAL_SOFT} />
-        <rect x="110" y="28" width="50" height="3" rx="1.5" fill={TEAL_SOFT} />
-        <rect x="110" y="36" width="45" height="3" rx="1.5" fill={TEAL_SOFT} />
+      {/* Floor shadow */}
+      <ellipse cx="140" cy="218" rx="95" ry="8" fill={NAVY} opacity="0.1" />
+
+      {/* Desk */}
+      <rect x="40" y="180" width="200" height="8" rx="4" fill={NAVY} opacity="0.25" />
+      <rect x="55" y="188" width="12" height="30" rx="2" fill={NAVY} opacity="0.2" />
+      <rect x="213" y="188" width="12" height="30" rx="2" fill={NAVY} opacity="0.2" />
+
+      {/* Laptop on desk */}
+      <g transform="translate(150, 130)">
+        <rect x="0" y="0" width="80" height="52" rx="4" fill={NAVY} />
+        <rect x="4" y="4" width="72" height="44" rx="2" fill="white" />
+        {/* Language app UI */}
+        <rect x="8" y="8" width="30" height="4" rx="1" fill={ROSE} />
+        <circle cx="14" cy="28" r="6" fill={TEAL_SOFT} />
+        <circle cx="28" cy="28" r="6" fill={PEACH} />
+        <circle cx="42" cy="28" r="6" fill={ROSE_SOFT} />
+        <circle cx="56" cy="28" r="6" fill={TEAL_SOFT} />
+        <rect x="8" y="38" width="60" height="3" rx="1" fill={NAVY} opacity="0.2" />
+        {/* Laptop base */}
+        <rect x="-6" y="52" width="92" height="4" rx="2" fill={NAVY} opacity="0.6" />
       </g>
-      {/* Speech bubble with A */}
-      <g transform="translate(28, 40)">
-        <ellipse cx="32" cy="26" rx="32" ry="24" fill={ROSE} />
-        <path d="M18 46 L24 56 L30 48 Z" fill={ROSE} />
-        <text x="32" y="34" textAnchor="middle" fill="white" fontSize="26" fontWeight="800" fontFamily="system-ui, -apple-system, sans-serif">A</text>
+
+      {/* Character — sitting, head + body */}
+      <g transform="translate(55, 75)">
+        {/* Body */}
+        <path d="M15 60 Q15 40 40 40 Q65 40 65 60 L65 100 Q65 110 55 110 L25 110 Q15 110 15 100 Z" fill={TEAL} />
+        {/* Neck */}
+        <rect x="32" y="32" width="16" height="12" fill={PEACH} />
+        {/* Head */}
+        <circle cx="40" cy="22" r="20" fill={PEACH} />
+        {/* Hair */}
+        <path d="M20 18 Q20 2 40 2 Q60 2 60 18 Q60 14 55 12 Q50 8 40 8 Q30 8 25 12 Q20 14 20 18 Z" fill={NAVY} />
+        {/* Eye */}
+        <circle cx="34" cy="22" r="2" fill={NAVY} />
+        <circle cx="46" cy="22" r="2" fill={NAVY} />
+        {/* Smile */}
+        <path d="M35 28 Q40 32 45 28" stroke={NAVY} strokeWidth="2" fill="none" strokeLinecap="round" />
+        {/* Headphones */}
+        <path d="M16 22 Q16 -2 40 -2 Q64 -2 64 22" stroke={ROSE_DARK} strokeWidth="4" fill="none" strokeLinecap="round" />
+        <rect x="10" y="18" width="10" height="16" rx="4" fill={ROSE_DARK} />
+        <rect x="60" y="18" width="10" height="16" rx="4" fill={ROSE_DARK} />
+        {/* Arm holding laptop */}
+        <path d="M58 68 Q85 60 100 62" stroke={TEAL} strokeWidth="14" fill="none" strokeLinecap="round" />
+        <circle cx="100" cy="62" r="6" fill={PEACH} />
       </g>
-      {/* Speech bubble with globe */}
-      <g transform="translate(186, 32)">
-        <ellipse cx="32" cy="26" rx="32" ry="24" fill={TEAL} />
-        <path d="M34 46 L40 56 L46 48 Z" fill={TEAL} />
-        <circle cx="32" cy="26" r="13" fill="none" stroke="white" strokeWidth="2.5" />
-        <ellipse cx="32" cy="26" rx="6" ry="13" fill="none" stroke="white" strokeWidth="2.5" />
-        <line x1="19" y1="26" x2="45" y2="26" stroke="white" strokeWidth="2.5" />
+
+      {/* Floating speech bubble "A" */}
+      <g transform="translate(15, 30)">
+        <ellipse cx="26" cy="22" rx="26" ry="20" fill="white" />
+        <path d="M16 38 L20 50 L28 40 Z" fill="white" />
+        <text x="26" y="30" textAnchor="middle" fill={ROSE_DARK} fontSize="22" fontWeight="800" fontFamily="system-ui, -apple-system, sans-serif">A</text>
       </g>
-      {/* Sparkle */}
-      <circle cx="240" cy="120" r="4" fill={PEACH} />
-      <circle cx="35" cy="140" r="3" fill={ROSE_SOFT} />
+
+      {/* Floating globe bubble */}
+      <g transform="translate(200, 30)">
+        <ellipse cx="26" cy="22" rx="24" ry="20" fill={TEAL} />
+        <path d="M34 38 L38 50 L44 40 Z" fill={TEAL} />
+        <circle cx="26" cy="22" r="11" fill="none" stroke="white" strokeWidth="2.5" />
+        <ellipse cx="26" cy="22" rx="5" ry="11" fill="none" stroke="white" strokeWidth="2.5" />
+        <line x1="15" y1="22" x2="37" y2="22" stroke="white" strokeWidth="2.5" />
+      </g>
+
+      {/* Paper airplane (travel hint) */}
+      <g transform="translate(195, 85) rotate(-20)">
+        <path d="M0 10 L30 0 L20 14 L30 20 L0 10 Z" fill="white" />
+        <path d="M0 10 L20 14 L20 24 Z" fill={NAVY} opacity="0.25" />
+        <path d="M-12 18 Q-4 14 0 10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeDasharray="2 3" fill="none" opacity="0.6" />
+      </g>
+
+      {/* Sparkles */}
+      <circle cx="25" cy="130" r="3" fill={PEACH} />
+      <circle cx="260" cy="115" r="3" fill={ROSE_SOFT} />
+      <path d="M255 160 l2 4 l5 1 l-3 3 l1 5 l-5 -2 l-5 2 l1 -5 l-3 -3 l5 -1 z" fill={PEACH} opacity="0.8" />
     </Wrap>
   );
 }

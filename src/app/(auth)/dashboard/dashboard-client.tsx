@@ -165,24 +165,28 @@ export function DashboardClient({
       {/* ═══════════════════════════════════════════════════ */}
       {/* ZONA 1 — HERO CONTEXTUAL                            */}
       {/* ═══════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-primary/5 via-white to-accent/5 p-5 sm:p-8">
+      <section className="relative overflow-hidden rounded-3xl bg-primary p-5 text-white shadow-lg sm:p-8">
+        {/* Decorative blobs */}
+        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
+
         <div className="relative z-10 flex flex-col-reverse items-start gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white/80">
               {greeting}, {firstName}
             </p>
-            <h1 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">
+            <h1 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
               Voce esta na fase de
               <br />
-              <span className="text-primary">{currentMilestone?.name || "Pesquisa"}</span>
+              <span className="text-white/95">{currentMilestone?.name || "Pesquisa"}</span>
             </h1>
-            <p className="mt-3 max-w-md text-sm text-foreground-muted sm:text-base">
+            <p className="mt-3 max-w-md text-sm text-white/85 sm:text-base">
               {stage.tagline}
             </p>
 
             {currentTotal > 0 && (
-              <p className="mt-4 text-xs font-semibold text-foreground-muted">
-                <span className="text-primary">{currentDone}/{currentTotal}</span> etapas concluidas nesta fase
+              <p className="mt-4 text-xs font-semibold text-white/80">
+                <span className="text-white">{currentDone}/{currentTotal}</span> etapas concluidas nesta fase
               </p>
             )}
           </div>
@@ -203,17 +207,17 @@ export function DashboardClient({
                 key={m.id}
                 className={`flex h-2.5 flex-1 min-w-[20px] rounded-full transition-all ${
                   isDone
-                    ? "bg-primary"
+                    ? "bg-white"
                     : isCurrent
-                    ? "bg-primary/70 ring-2 ring-primary/20"
-                    : "bg-foreground-dim/25"
+                    ? "bg-white/90 ring-2 ring-white/40"
+                    : "bg-white/25"
                 }`}
                 title={m.name}
               />
             );
           })}
         </div>
-        <div className="relative z-10 mt-2 flex items-center justify-between text-[10px] font-medium text-foreground-dim sm:text-xs">
+        <div className="relative z-10 mt-2 flex items-center justify-between text-[10px] font-medium text-white/70 sm:text-xs">
           <span>Inicio</span>
           <span>Fase {currentIndex + 1} de {totalMs}</span>
           <span>Cidadania</span>
