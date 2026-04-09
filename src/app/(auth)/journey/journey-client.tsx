@@ -242,31 +242,30 @@ export function JourneyClient({ allPlans, macroMilestones, profiles = [] }: Jour
           />
         </div>
 
-        {/* Bonus progress from B/C plans */}
-        {bonusCompleted > 0 && (
-          <div className="mt-3 flex items-center gap-2">
-            <div className="flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1 text-[11px] font-semibold text-accent">
-              <TrendingUp className="h-3 w-3" />
-              Preparo extra: +{bonusPercent}%
-            </div>
-            <span className="text-[10px] text-foreground-dim">
-              {bonusCompleted} de {bonusTotal} etapas dos planos B/C
-            </span>
-          </div>
-        )}
-
-        {/* Plans row */}
-        <div className="mt-4 flex flex-wrap gap-2">
-          {allPlans.map((plan: any) => {
-            const pc = PLAN_COLORS[plan.priority] || PLAN_COLORS.PRIMARY;
-            return (
-              <span key={plan.id} className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium ${pc.bg} ${pc.text}`}>
-                <span className="font-bold">{pc.label}</span>
-                <span className="opacity-60">—</span>
-                <span className="truncate max-w-[120px] sm:max-w-[180px]">{plan.program?.name}</span>
+        {/* Secondary details: bonus + plans (muted) */}
+        <div className="mt-4 border-t border-border/40 pt-3">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[10px] text-foreground-dim">
+            {bonusCompleted > 0 && (
+              <span className="inline-flex items-center gap-1">
+                <TrendingUp className="h-2.5 w-2.5" />
+                Preparo extra +{bonusPercent}%
+                <span className="opacity-70">({bonusCompleted}/{bonusTotal})</span>
               </span>
-            );
-          })}
+            )}
+            {bonusCompleted > 0 && allPlans.length > 0 && (
+              <span className="text-foreground-dim/40">•</span>
+            )}
+            {allPlans.map((plan: any, i: number) => {
+              const pc = PLAN_COLORS[plan.priority] || PLAN_COLORS.PRIMARY;
+              return (
+                <span key={plan.id} className="inline-flex items-center gap-1">
+                  {i > 0 && <span className="text-foreground-dim/40">•</span>}
+                  <span className={`font-semibold ${pc.text} opacity-70`}>{pc.label}</span>
+                  <span className="truncate max-w-[100px] sm:max-w-[140px]">{plan.program?.name}</span>
+                </span>
+              );
+            })}
+          </div>
         </div>
       </div>
 
